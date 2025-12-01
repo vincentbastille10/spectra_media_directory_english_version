@@ -1,299 +1,307 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>{% block title %}Spectra AI Directory — Curated AI tools for businesses & teams{% endblock %}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="Spectra AI Directory is a curated directory of AI tools built for companies and professionals, focused on sales, productivity, customer support, analytics, content and developer tools." />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Spectra AI Directory — AI Tools for Businesses | List Your AI Product</title>
 
-  <!-- Open Graph / social -->
-  <meta property="og:title" content="Spectra AI Directory — Curated AI tools for businesses & teams" />
-  <meta property="og:description"
-        content="Discover AI tools that actually help companies sell more, support customers faster and automate operations. List your AI tool for €20." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://spectra-media-directory-english-version.onrender.com/" />
-  <meta property="og:image" content="{{ url_for('static', filename='og-image.png') }}" />
+    <meta name="description"
+          content="Spectra AI Directory is a curated directory of AI tools for businesses. Discover business-ready AI tools for sales, support, automation, analytics and content — or list your AI product for €20." />
 
-  <!-- Basic reset + fonts + layout -->
-  <style>
-    :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --card: #111827;
-      --accent: #3b82f6;
-      --accent-soft: rgba(59,130,246,0.15);
-      --accent-strong: #2563eb;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border-subtle: #1f2937;
-      --danger: #ef4444;
-      --success: #4ade80;
-      --radius-xl: 1.25rem;
-      --shadow-soft: 0 22px 45px rgba(15,23,42,0.65);
-    }
+    <meta name="robots" content="index,follow" />
+    <meta name="google-site-verification" content="google8334646a4a411e97.html" />
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <!-- Open Graph -->
+    <meta property="og:title" content="Spectra AI Directory — AI Tools for Businesses" />
+    <meta property="og:description" content="Discover curated AI tools for professionals and list your own for €20." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://spectra-media-directory-english-version.onrender.com/" />
+    <meta property="og:image" content="https://spectra-media-directory-english-version.onrender.com/static/og-image.jpg" />
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spectra AI Directory — Business AI Tools" />
+    <meta name="twitter:description" content="The B2B AI tools directory for companies and pros." />
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    <link rel="icon" href="/static/favicon.ico" />
+    <link rel="canonical" href="https://spectra-media-directory-english-version.onrender.com/" />
 
-    .page-shell {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 1.5rem 1.25rem 3rem;
-      width: 100%;
-    }
+    <!-- Basic reset + fonts + layout -->
+    <style>
+      :root {
+        --bg: #050816;
+        --bg-alt: #0b1020;
+        --card: #111827;
+        --accent: #3b82f6;
+        --accent-soft: rgba(59,130,246,0.15);
+        --accent-strong: #2563eb;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border-subtle: #1f2937;
+        --danger: #ef4444;
+        --success: #4ade80;
+        --radius-xl: 1.25rem;
+        --shadow-soft: 0 22px 45px rgba(15,23,42,0.65);
+      }
 
-    header.site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.75rem;
-    }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-    }
-
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: conic-gradient(
-        from 180deg,
-        #22d3ee,
-        #a855f7,
-        #f97316,
-        #22c55e,
-        #22d3ee
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 2px rgba(15,23,42,0.9), 0 16px 35px rgba(15,23,42,0.85);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-logo::after {
-      content: "";
-      width: 70%;
-      height: 70%;
-      border-radius: inherit;
-      background: radial-gradient(circle at 30% 20%, #0f172a 0, #020617 65%);
-      opacity: .9;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
-    .brand-title {
-      font-weight: 650;
-      letter-spacing: .03em;
-      font-size: 1rem;
-    }
-
-    .brand-subtitle {
-      font-size: .78rem;
-      color: var(--muted);
-    }
-
-    nav.site-nav {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      font-size: .83rem;
-    }
-
-    .nav-link {
-      padding: .45rem .75rem;
-      border-radius: 999px;
-      color: var(--muted);
-      border: 1px solid transparent;
-      transition: all .16s ease-out;
-    }
-
-    .nav-link:hover {
-      color: var(--text);
-      border-color: rgba(148,163,184,0.35);
-      background: rgba(15,23,42,0.75);
-    }
-
-    .nav-link.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color: white;
-      border-color: transparent;
-      box-shadow: 0 12px 30px rgba(37,99,235,0.55);
-      font-weight: 560;
-    }
-
-    .nav-link.primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(37,99,235,0.75);
-    }
-
-    .lang-switch {
-      margin-left: .4rem;
-      font-size: .9rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: .25rem;
-    }
-
-    .lang-switch a {
-      padding: .18rem .45rem;
-      border-radius: .6rem;
-      border: 1px solid transparent;
-      transition: background .16s ease-out, border-color .16s ease-out, transform .16s ease-out;
-    }
-
-    .lang-switch a:hover {
-      border-color: rgba(148,163,184,0.5);
-      background: rgba(15,23,42,0.9);
-      transform: translateY(-1px);
-    }
-
-    main {
-      flex: 1;
-    }
-
-    footer {
-      border-top: 1px solid rgba(15,23,42,0.95);
-      background: radial-gradient(circle at top, #020617 0, #000 60%);
-      padding: 1.75rem 1.25rem;
-      color: var(--muted);
-      font-size: .8rem;
-      margin-top: auto;
-    }
-
-    .footer-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-    }
-
-    .footer-inner strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      border-radius: 999px;
-      padding: .18rem .6rem .18rem .18rem;
-      font-size: .72rem;
-      background: rgba(15,23,42,0.95);
-      border: 1px solid rgba(55,65,81,0.85);
-      color: var(--muted);
-    }
-
-    .badge-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #22c55e 0, #16a34a 40%, #052e16 100%);
-      box-shadow: 0 0 0 2px rgba(22,163,74,0.55);
-    }
-
-    .flash-container {
-      margin-bottom: 1rem;
-    }
-
-    .flash-message {
-      padding: .6rem .85rem;
-      border-radius: .75rem;
-      font-size: .83rem;
-      border: 1px solid var(--border-subtle);
-      background: rgba(15,23,42,0.95);
-      color: var(--text);
-      margin-bottom: .35rem;
-    }
-
-    .flash-message.error {
-      border-color: rgba(248,113,113,0.7);
-      background: linear-gradient(135deg, rgba(127,29,29,0.96), rgba(15,23,42,0.98));
-      color: #fee2e2;
-    }
-
-    .flash-message.success {
-      border-color: rgba(34,197,94,0.8);
-      background: linear-gradient(135deg, rgba(6,95,70,0.96), rgba(15,23,42,0.98));
-      color: #dcfce7;
-    }
-
-    /* Product Hunt badge – premium hover */
-    .ph-badge-wrapper {
-      margin-top: 0.4rem;
-    }
-
-    .ph-badge {
-      display: inline-flex;
-      border-radius: 999px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(15,23,42,0.7);
-      transition:
-        transform 0.18s ease-out,
-        box-shadow 0.18s ease-out,
-        filter 0.18s ease-out;
-      background: #f9fafb;
-    }
-
-    .ph-badge img {
-      display: block;
-      width: 250px;
-      height: 54px;
-    }
-
-    .ph-badge:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 20px 45px rgba(15,23,42,0.9);
-      filter: brightness(1.04);
-    }
-
-    @media (max-width: 640px) {
-      header.site-header {
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+        background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
       }
-      nav.site-nav {
-        width: 100%;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-      }
-    }
-  </style>
 
-  {% block head_extra %}{% endblock %}
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page-shell {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem 3rem;
+        width: 100%;
+      }
+
+      header.site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: .9rem;
+      }
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        background: conic-gradient(
+          from 180deg,
+          #22d3ee,
+          #a855f7,
+          #f97316,
+          #22c55e,
+          #22d3ee
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 2px rgba(15,23,42,0.9), 0 16px 35px rgba(15,23,42,0.85);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .brand-logo::after {
+        content: "";
+        width: 70%;
+        height: 70%;
+        border-radius: inherit;
+        background: radial-gradient(circle at 30% 20%, #0f172a 0, #020617 65%);
+        opacity: .9;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+
+      .brand-title {
+        font-weight: 650;
+        letter-spacing: .03em;
+        font-size: 1rem;
+      }
+
+      .brand-subtitle {
+        font-size: .78rem;
+        color: var(--muted);
+      }
+
+      nav.site-nav {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        font-size: .83rem;
+      }
+
+      .nav-link {
+        padding: .45rem .75rem;
+        border-radius: 999px;
+        color: var(--muted);
+        border: 1px solid transparent;
+        transition: all .16s ease-out;
+      }
+
+      .nav-link:hover {
+        color: var(--text);
+        border-color: rgba(148,163,184,0.35);
+        background: rgba(15,23,42,0.75);
+      }
+
+      .nav-link.primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 12px 30px rgba(37,99,235,0.55);
+        font-weight: 560;
+      }
+
+      .nav-link.primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 40px rgba(37,99,235,0.75);
+      }
+
+      .lang-switch {
+        margin-left: .4rem;
+        font-size: .9rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+      }
+
+      .lang-switch a {
+        padding: .18rem .45rem;
+        border-radius: .6rem;
+        border: 1px solid transparent;
+        transition: background .16s ease-out, border-color .16s ease-out, transform .16s ease-out;
+      }
+
+      .lang-switch a:hover {
+        border-color: rgba(148,163,184,0.5);
+        background: rgba(15,23,42,0.9);
+        transform: translateY(-1px);
+      }
+
+      main {
+        flex: 1;
+      }
+
+      footer {
+        border-top: 1px solid rgba(15,23,42,0.95);
+        background: radial-gradient(circle at top, #020617 0, #000 60%);
+        padding: 1.75rem 1.25rem;
+        color: var(--muted);
+        font-size: .8rem;
+        margin-top: auto;
+      }
+
+      .footer-inner {
+        max-width: 1080px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+      }
+
+      .footer-inner strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        border-radius: 999px;
+        padding: .18rem .6rem .18rem .18rem;
+        font-size: .72rem;
+        background: rgba(15,23,42,0.95);
+        border: 1px solid rgba(55,65,81,0.85);
+        color: var(--muted);
+      }
+
+      .badge-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        background: radial-gradient(circle at 30% 20%, #22c55e 0, #16a34a 40%, #052e16 100%);
+        box-shadow: 0 0 0 2px rgba(22,163,74,0.55);
+      }
+
+      .flash-container {
+        margin-bottom: 1rem;
+      }
+
+      .flash-message {
+        padding: .6rem .85rem;
+        border-radius: .75rem;
+        font-size: .83rem;
+        border: 1px solid var(--border-subtle);
+        background: rgba(15,23,42,0.95);
+        color: var(--text);
+        margin-bottom: .35rem;
+      }
+
+      .flash-message.error {
+        border-color: rgba(248,113,113,0.7);
+        background: linear-gradient(135deg, rgba(127,29,29,0.96), rgba(15,23,42,0.98));
+        color: #fee2e2;
+      }
+
+      .flash-message.success {
+        border-color: rgba(34,197,94,0.8);
+        background: linear-gradient(135deg, rgba(6,95,70,0.96), rgba(15,23,42,0.98));
+        color: #dcfce7;
+      }
+
+      .ph-badge-wrapper {
+        margin-top: 0.4rem;
+      }
+
+      .ph-badge {
+        display: inline-flex;
+        border-radius: 999px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(15,23,42,0.7);
+        transition:
+          transform 0.18s ease-out,
+          box-shadow 0.18s ease-out,
+          filter 0.18s ease-out;
+        background: #f9fafb;
+      }
+
+      .ph-badge img {
+        display: block;
+        width: 250px;
+        height: 54px;
+      }
+
+      .ph-badge:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 20px 45px rgba(15,23,42,0.9);
+        filter: brightness(1.04);
+      }
+
+      @media (max-width: 640px) {
+        header.site-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        nav.site-nav {
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+
+    {% block head_extra %}{% endblock %}
 </head>
 <body>
   <div class="page-shell">
@@ -310,7 +318,6 @@
         <a href="{{ url_for('annuaire_list') }}" class="nav-link">All tools</a>
         <a href="{{ url_for('ajouter') }}" class="nav-link primary">List your AI tool</a>
 
-        <!-- Switch FR / EN -->
         <div class="lang-switch">
           <a href="https://spectraaidirectory.onrender.com" title="Version française">🇫🇷</a>
           <span>·</span>
@@ -347,7 +354,6 @@
         Add your AI tool for <strong>€20</strong> and reach companies looking for real, working solutions.
       </div>
 
-      <!-- Product Hunt embed with animated hover -->
       <div class="ph-badge-wrapper">
         <a href="https://www.producthunt.com/products/ai-tools-directory-by-spectra-media?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-ai&#0045;tools&#0045;directory&#0045;by&#0045;spectra&#0045;media"
            class="ph-badge"
@@ -362,7 +368,6 @@
         </a>
       </div>
 
-      <!-- Contact -->
       <div style="margin-top: 0.4rem;">
         Questions? Contact: <strong>spectramediabots@gmail.com</strong>
       </div>
