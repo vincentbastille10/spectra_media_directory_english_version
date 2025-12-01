@@ -1,39 +1,55 @@
-
 {% extends "base.html" %}
 
-{% block title %}Spectra AI Directory — AI tools for teams & companies{% endblock %}
+{% block title %}Spectra AI Directory — Curated AI tools for businesses{% endblock %}
 
 {% block content %}
 <section style="display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1.2fr);gap:2.25rem;align-items:flex-start;margin-bottom:2.5rem;">
   <div>
     <div style="display:inline-flex;align-items:center;gap:.5rem;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(55,65,81,0.85);background:rgba(15,23,42,0.9);margin-bottom:.9rem;font-size:.75rem;color:#9ca3af;">
       <span style="width:9px;height:9px;border-radius:999px;background:radial-gradient(circle at 30% 20%,#22c55e 0,#16a34a 45%,#052e16 100%);box-shadow:0 0 0 3px rgba(22,163,74,0.55);"></span>
-      <span>Built for real businesses — not just hype.</span>
+      <span>Made for real companies. No “just launched” hype.</span>
     </div>
 
-    <h1 style="font-size:2.35rem;line-height:1.05;margin-bottom:.9rem;">
-      The AI tools directory<br />
+    <h1 style="font-size:2.45rem;line-height:1.05;margin-bottom:.9rem;">
+      The AI tools directory
+      <br />
       <span style="background:linear-gradient(135deg,#38bdf8,#a855f7,#f97316);-webkit-background-clip:text;color:transparent;">
-        focused on companies
+        that speaks business, not buzzwords
       </span>
     </h1>
 
-    <p style="color:#9ca3af;font-size:.96rem;line-height:1.7;margin-bottom:1.4rem;max-width:34rem;">
-      Spectra AI Directory is a curated list of AI tools that help teams <strong>save time, qualify leads and automate repetitive work</strong>.
-      Each tool is designed to be understandable for non‑technical teams.
+    <p style="color:#9ca3af;font-size:.96rem;line-height:1.7;margin-bottom:1rem;max-width:35rem;">
+      Spectra AI Directory is a **curated selection of AI tools built for companies and professionals**.
+      We highlight products that help teams <strong>sell more, answer faster, automate boring work
+      and make better decisions</strong> — without needing an AI engineer on the payroll.
     </p>
 
+    <ul style="color:#9ca3af;font-size:.86rem;line-height:1.6;margin-bottom:1.4rem;max-width:34rem;padding-left:1.1rem;">
+      <li>✔ Focused on <strong>B2B & enterprise use-cases</strong> (sales, support, ops, data, content)</li>
+      <li>✔ Hand-picked tools that already run in real teams, not side-projects</li>
+      <li>✔ Clear, non-technical explanations so decision-makers actually understand the value</li>
+    </ul>
+
     <div style="display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1.75rem;">
-      <a href="{{ url_for('annuaire_list') }}" style="padding:.68rem 1.3rem;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;font-size:.9rem;font-weight:560;box-shadow:0 16px 34px rgba(37,99,235,0.72);">
-        Browse all AI tools
+      <a href="{{ url_for('annuaire_list') }}"
+         style="padding:.68rem 1.3rem;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;font-size:.9rem;font-weight:560;box-shadow:0 16px 34px rgba(37,99,235,0.72);">
+        Browse AI tools for companies
       </a>
-      <a href="{{ url_for('ajouter') }}" style="padding:.66rem 1.2rem;border-radius:999px;border:1px solid rgba(148,163,184,0.6);font-size:.88rem;color:#e5e7eb;background:rgba(15,23,42,0.9);">
-        List my AI tool for 20€
+
+      <!-- GROS BOUTON ROUGE POUR LES CRÉATEURS -->
+      <a href="{{ url_for('ajouter') }}"
+         style="padding:.7rem 1.5rem;border-radius:999px;
+                background:linear-gradient(135deg,#ef4444,#b91c1c);
+                color:white;font-size:.9rem;font-weight:650;
+                box-shadow:0 18px 40px rgba(185,28,28,0.9);">
+        You built an AI tool? List it here for €20 →
       </a>
     </div>
 
-    <p style="font-size:.78rem;color:#6b7280;max-width:30rem;">
-      Ideal for founders, consultants and teams who want to <strong>ship results quickly</strong> without spending weeks comparing similar tools.
+    <p style="font-size:.78rem;color:#6b7280;max-width:32rem;">
+      Ideal for founders, SaaS builders and agencies who want their AI product
+      in front of **decision-makers, consultants and business owners** who are actively
+      looking for tools that work.
     </p>
   </div>
 
@@ -72,7 +88,7 @@
 <section>
   <h2 style="font-size:1.15rem;margin-bottom:.75rem;">Browse by category</h2>
   <p style="font-size:.86rem;color:#9ca3af;margin-bottom:1.1rem;">
-    Six main categories to quickly find the AI tools that match your business needs.
+    Six business-oriented categories to quickly find the AI tools that match your needs.
   </p>
   {% include "partials_category_filters.html" %}
 </section>
