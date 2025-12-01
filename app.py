@@ -25,7 +25,7 @@ import stripe
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "dev-secret-change-me")
 
-# Stripe (optional but ready)
+# Stripe
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "")
 STRIPE_PRICE_ID = os.getenv("STRIPE_PRICE_ID", "")  # recurring or one-time price
 STRIPE_SUCCESS_URL = os.getenv(
@@ -802,6 +802,7 @@ def ajouter():
                 counter += 1
                 slug = f"{base_slug}-{counter}"
 
+            # New tools: NOT approved until Stripe payment is confirmed
             db.execute(
                 """
                 INSERT INTO tools (
@@ -821,18 +822,24 @@ def ajouter():
                     tags,
                     target_audience,
                     pricing,
-                    0,
-                    1,  # directly approved for now
+                    0,  # is_featured
+                    0,  # is_approved -> will be set to 1 after Stripe payment
                     created_at,
                 ),
             )
 
-        flash("Thanks! Your AI tool has been added to the directory.", "success")
+        flash("Your AI tool has been saved. Please complete payment to publish it.", "success")
 
         # If Stripe is configured, redirect user to payment page
         if STRIPE_SECRET_KEY and STRIPE_PRICE_ID:
             return redirect(url_for("start_checkout", slug=slug))
 
+        # If no Stripe configured, publish immediately (fallback)
+        with get_db() as db:
+            db.execute(
+                "UPDATE tools SET is_approved = 1 WHERE slug = ?",
+                (slug,),
+            )
         return redirect(url_for("annuaire_list"))
 
     return render_template(
@@ -851,7 +858,7 @@ def start_checkout(slug: str):
         flash("Stripe is not configured yet. Please contact us directly.", "error")
         return redirect(url_for("annuaire_list"))
 
-    # We do not strictly need the tool here, but we try to fetch it
+    # Fetch tool (should exist, just created)
     with get_db() as db:
         cur = db.execute(
             "SELECT * FROM tools WHERE slug = ?",
@@ -862,6 +869,9 @@ def start_checkout(slug: str):
     if tool is None:
         abort(404)
 
+    # success_url with slug + {CHECKOUT_SESSION_ID} placeholder
+    success_url = f"{STRIPE_SUCCESS_URL}?slug={slug}&session_id={{CHECKOUT_SESSION_ID}}"
+
     session = stripe.checkout.Session.create(
         mode="payment",
         line_items=[
@@ -870,7 +880,7 @@ def start_checkout(slug: str):
                 "quantity": 1,
             }
         ],
-        success_url=STRIPE_SUCCESS_URL + "?slug=" + slug,
+        success_url=success_url,
         cancel_url=STRIPE_CANCEL_URL,
         metadata={
             "tool_slug": slug,
@@ -884,17 +894,35 @@ def start_checkout(slug: str):
 @app.route("/checkout/success")
 def checkout_success():
     """
-    Simple confirmation page.
-    The Stripe webhook should be used in a real deployment
-    to mark the payment as validated on our side.
+    Called by Stripe redirect after payment.
+    We verify the Checkout Session and, if paid, mark the tool as approved.
     """
     slug = request.args.get("slug")
+    session_id = request.args.get("session_id")
+
+    if not slug:
+        abort(400)
+
+    if STRIPE_SECRET_KEY and session_id:
+        try:
+            s = stripe.checkout.Session.retrieve(session_id)
+            payment_status = getattr(s, "payment_status", None) or s.get("payment_status")
+        except Exception:
+            payment_status = None
+
+        if payment_status == "paid":
+            with get_db() as db:
+                db.execute(
+                    "UPDATE tools SET is_approved = 1 WHERE slug = ?",
+                    (slug,),
+                )
+
     return render_template("checkout_success.html", slug=slug)
 
 
 @app.route("/checkout/cancel")
 def checkout_cancel():
-    flash("Payment cancelled. Your AI tool is still saved but not confirmed yet.", "error")
+    flash("Payment cancelled. Your AI tool is saved but not published.", "error")
     return redirect(url_for("annuaire_list"))
 
 
