@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
         content="Spectra AI Directory is a curated directory of AI tools built for companies and professionals, focused on sales, productivity, customer support, analytics, content and developer tools." />
-  <link rel="icon" href="/static/favicon.ico">
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
   <!-- Open Graph / social -->
   <meta property="og:title" content="Spectra AI Directory — Curated AI tools for businesses & teams" />
@@ -14,9 +16,9 @@
         content="Discover AI tools that actually help companies sell more, support customers faster and automate operations. List your AI tool for €20." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://spectra-media-directory-english-version.onrender.com/" />
-  <meta property="og:image" content="/static/og-image.png" />
+  <meta property="og:image" content="{{ url_for('static', filename='og-image.png') }}" />
 
-  <!-- Basic reset + fonts -->
+  <!-- Basic reset + fonts + layout -->
   <style>
     :root {
       --bg: #050816;
@@ -168,11 +170,13 @@
       padding: .18rem .45rem;
       border-radius: .6rem;
       border: 1px solid transparent;
+      transition: background .16s ease-out, border-color .16s ease-out, transform .16s ease-out;
     }
 
     .lang-switch a:hover {
       border-color: rgba(148,163,184,0.5);
       background: rgba(15,23,42,0.9);
+      transform: translateY(-1px);
     }
 
     main {
@@ -247,6 +251,35 @@
       color: #dcfce7;
     }
 
+    /* Product Hunt badge – premium hover */
+    .ph-badge-wrapper {
+      margin-top: 0.4rem;
+    }
+
+    .ph-badge {
+      display: inline-flex;
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.7);
+      transition:
+        transform 0.18s ease-out,
+        box-shadow 0.18s ease-out,
+        filter 0.18s ease-out;
+      background: #f9fafb;
+    }
+
+    .ph-badge img {
+      display: block;
+      width: 250px;
+      height: 54px;
+    }
+
+    .ph-badge:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 20px 45px rgba(15,23,42,0.9);
+      filter: brightness(1.04);
+    }
+
     @media (max-width: 640px) {
       header.site-header {
         flex-direction: column;
@@ -309,11 +342,29 @@
           Curated by <strong>Spectra Media AI</strong>
         </span>
       </div>
+
       <div>
         Add your AI tool for <strong>€20</strong> and reach companies looking for real, working solutions.
       </div>
-      <div>
-        Questions? Contact: <strong>contact@spectramedia.ai</strong> (example)
+
+      <!-- Product Hunt embed with animated hover -->
+      <div class="ph-badge-wrapper">
+        <a href="https://www.producthunt.com/products/ai-tools-directory-by-spectra-media?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-ai&#0045;tools&#0045;directory&#0045;by&#0045;spectra&#0045;media"
+           class="ph-badge"
+           target="_blank"
+           rel="noopener">
+          <img
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1043962&theme=light&t=1764585675777"
+            alt="AI Tools Directory — by Spectra Media | Product Hunt"
+            width="250"
+            height="54"
+          />
+        </a>
+      </div>
+
+      <!-- Contact -->
+      <div style="margin-top: 0.4rem;">
+        Questions? Contact: <strong>spectramediabots@gmail.com</strong>
       </div>
     </div>
   </footer>
