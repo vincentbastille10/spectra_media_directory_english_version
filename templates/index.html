@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
+{% block head_extra %}
+  <!-- SEO: JSON-LD WebSite + SearchAction -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Spectra AI Directory",
+    "url": "{{ url_for('index', _external=True) }}",
+    "description": "Spectra AI Directory is a curated directory of AI tools for businesses: sales, support, automation, analytics, content and developer tools.",
+    "inLanguage": "en",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Spectra Media AI",
+      "url": "{{ url_for('index', _external=True) }}"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ url_for('annuaire_list', _external=True) }}?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+{% endblock %}
+
 {% block title %}Spectra AI Directory — Curated AI tools for businesses{% endblock %}
 
 {% block content %}
@@ -19,7 +43,7 @@
     </h1>
 
     <p style="color:#9ca3af;font-size:.96rem;line-height:1.7;margin-bottom:1rem;max-width:35rem;">
-      Spectra AI Directory is a **curated selection of AI tools built for companies and professionals**.
+      Spectra AI Directory is a <strong>curated selection of AI tools built for companies and professionals</strong>.
       We highlight products that help teams <strong>sell more, answer faster, automate boring work
       and make better decisions</strong> — without needing an AI engineer on the payroll.
     </p>
@@ -48,7 +72,7 @@
 
     <p style="font-size:.78rem;color:#6b7280;max-width:32rem;">
       Ideal for founders, SaaS builders and agencies who want their AI product
-      in front of **decision-makers, consultants and business owners** who are actively
+      in front of <strong>decision-makers, consultants and business owners</strong> who are actively
       looking for tools that work.
     </p>
   </div>
