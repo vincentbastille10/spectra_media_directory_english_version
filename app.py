@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import os
@@ -83,8 +82,6 @@ def init_db():
         )
 
 
-# Create DB on first run
-
 # ============================================================
 # HELPERS
 # ============================================================
@@ -112,12 +109,24 @@ def get_categories():
         "Developer & Ops",
     ]
 
+
 # ============================================================
 # INITIAL CATALOG — 50 AI TOOLS FOR BUSINESSES
 # ============================================================
 
 INITIAL_TOOLS = [
-    # Productivity & Automation
+    # Productivity & Automation (but we feature Betty in Sales & Marketing)
+    {
+        "name": "Betty Bots",
+        "website_url": "https://www.spectramedia.online/",
+        "short_description": "AI lead-qualification assistants for small businesses and professionals.",
+        "long_description": "",
+        "category": "Sales & Marketing",
+        "tags": "lead qualification, chatbot, assistant, SMB",
+        "target_audience": "small businesses, agencies, local services, professionals",
+        "pricing": "From €29.90 / month",
+        "is_featured": 1,
+    },
     {
         "name": "Notion AI",
         "website_url": "https://www.notion.so/product/ai",
@@ -666,13 +675,18 @@ def seed_initial_tools() -> None:
                     t.get("tags", "") or "",
                     t.get("target_audience", "") or "",
                     t.get("pricing", "") or "",
-                    0,
+                    1 if t.get("is_featured") else 0,
                     1,
                     now,
                 ),
             )
+
+
+# Initialize DB on import (good for Render/Vercel)
 init_db()
 seed_initial_tools()
+
+
 # ============================================================
 # ROUTES
 # ============================================================
@@ -688,7 +702,7 @@ def index():
             """
             SELECT * FROM tools
             WHERE is_approved = 1
-            ORDER BY name COLLATE NOCASE ASC
+            ORDER BY is_featured DESC, name COLLATE NOCASE ASC
             """
         )
         tools = cur.fetchall()
@@ -714,7 +728,7 @@ def annuaire_list():
             """
             SELECT * FROM tools
             WHERE is_approved = 1
-            ORDER BY name COLLATE NOCASE ASC
+            ORDER BY is_featured DESC, name COLLATE NOCASE ASC
             """
         )
         tools = cur.fetchall()
