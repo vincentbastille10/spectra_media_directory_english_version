@@ -933,6 +933,14 @@ def checkout_cancel():
 @app.errorhandler(404)
 def not_found(e):
     return render_template("base.html", content="<h1>404 – Page not found</h1>"), 404
+# ============================================================
+# GOOGLE SEARCH CONSOLE VERIFICATION
+# ============================================================
+
+@app.route("/google8334646a4a411e97.html")
+def google_verify():
+    # must match EXACT Google expected content
+    return "google-site-verification: google8334646a4a411e97.html"
 
 
 # ============================================================
