@@ -13,6 +13,7 @@ from flask import (
     url_for,
     abort,
     flash,
+    Response,
 )
 
 import stripe
@@ -942,6 +943,79 @@ def google_verify():
     # must match EXACT Google expected content
     return "google-site-verification: google8334646a4a411e97.html"
 
+# ============================================================
+# SEO: robots.txt + sitemap.xml
+# ============================================================
+
+@app.route("/robots.txt")
+def robots_txt():
+    """
+    Robots.txt generated dynamically.
+    Tells Google the site is indexable and where the sitemap is.
+    """
+    base = request.url_root.rstrip("/")
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        f"Sitemap: {base}/sitemap.xml",
+        "",
+    ]
+    return Response("\n".join(lines), mimetype="text/plain")
+
+
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    """
+    XML sitemap for Google and other search engines.
+    Includes:
+    - main pages (/, /directory, /add)
+    - one URL per approved tool (/tool/<slug>)
+    """
+    base = request.url_root.rstrip("/")
+
+    static_urls = [
+        {"loc": f"{base}/", "priority": "1.0"},
+        {"loc": f"{base}/directory", "priority": "0.9"},
+        {"loc": f"{base}/add", "priority": "0.8"},
+    ]
+
+    with get_db() as db:
+        cur = db.execute(
+            """
+            SELECT slug, created_at
+            FROM tools
+            WHERE is_approved = 1
+            ORDER BY created_at DESC
+            """
+        )
+        tools = cur.fetchall()
+
+    xml = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+
+    # Static URLs
+    for u in static_urls:
+        xml.append("  <url>")
+        xml.append(f"    <loc>{u['loc']}</loc>")
+        xml.append(f"    <priority>{u['priority']}</priority>")
+        xml.append("  </url>")
+
+    # Tool URLs
+    for t in tools:
+        loc = f"{base}/tool/{t['slug']}"
+        lastmod = t["created_at"] or datetime.utcnow().isoformat()
+
+        xml.append("  <url>")
+        xml.append(f"    <loc>{loc}</loc>")
+        xml.append(f"    <lastmod>{lastmod}</lastmod>")
+        xml.append("    <priority>0.7</priority>")
+        xml.append("  </url>")
+
+    xml.append("</urlset>")
+
+    return Response("\n".join(xml), mimetype="application/xml")
 
 # ============================================================
 # ENTRY POINT
