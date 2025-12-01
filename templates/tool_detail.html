@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+{% block title %}{{ tool["name"] }} — AI tool details | Spectra AI Directory{% endblock %}
+
+{% block content %}
+<article style="border-radius:1.25rem;border:1px solid rgba(31,41,55,0.95);background:rgba(15,23,42,0.98);padding:1.3rem 1.4rem;box-shadow:0 22px 45px rgba(15,23,42,0.9);margin-bottom:1.6rem;">
+  <header style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.9rem;">
+    <div>
+      <h1 style="font-size:1.4rem;margin-bottom:.25rem;">{{ tool["name"] }}</h1>
+      <p style="font-size:.83rem;color:#9ca3af;">{{ tool["short_description"] }}</p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.45rem;">
+      <span style="font-size:.74rem;border-radius:999px;padding:.22rem .7rem;background:rgba(30,64,175,0.5);border:1px solid rgba(129,140,248,0.85);color:#e0e7ff;">
+        {{ tool["category"] or "General" }}
+      </span>
+      {% if tool["pricing"] %}
+        <span style="font-size:.78rem;color:#e5e7eb;">{{ tool["pricing"] }}</span>
+      {% endif %}
+      <a href="{{ tool['website_url'] }}" target="_blank" rel="noopener"
+         style="margin-top:.15rem;padding:.45rem .85rem;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;font-size:.8rem;">
+        Visit website ↗
+      </a>
+    </div>
+  </header>
+
+  {% if tool["long_description"] %}
+    <section style="margin-bottom:1.1rem;">
+      <h2 style="font-size:.98rem;margin-bottom:.35rem;">What this AI tool does</h2>
+      <p style="font-size:.86rem;color:#e5e7eb;line-height:1.7;white-space:pre-line;">
+        {{ tool["long_description"] }}
+      </p>
+    </section>
+  {% endif %}
+
+  {% if tool["target_audience"] or tool["tags"] %}
+    <section style="display:flex;flex-wrap:wrap;gap:1.5rem;font-size:.8rem;color:#9ca3af;">
+      {% if tool["target_audience"] %}
+        <div>
+          <h3 style="font-size:.8rem;margin-bottom:.2rem;color:#e5e7eb;">Best suited for</h3>
+          <p>{{ tool["target_audience"] }}</p>
+        </div>
+      {% endif %}
+      {% if tool["tags"] %}
+        <div>
+          <h3 style="font-size:.8rem;margin-bottom:.2rem;color:#e5e7eb;">Tags</h3>
+          <p>{{ tool["tags"] }}</p>
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+</article>
+
+<a href="{{ url_for('annuaire_list') }}" style="font-size:.82rem;color:#60a5fa;">← Back to all tools</a>
+{% endblock %}

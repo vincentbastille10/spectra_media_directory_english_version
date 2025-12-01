@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+{% block title %}Payment confirmed — Spectra AI Directory{% endblock %}
+
+{% block content %}
+<section style="max-width:520px;">
+  <h1 style="font-size:1.4rem;margin-bottom:.4rem;">Thank you for your payment 🙌</h1>
+  <p style="font-size:.9rem;color:#9ca3af;margin-bottom:1rem;">
+    Your AI tool listing payment has been confirmed via Stripe.
+    We will keep your product live in the directory and may feature it in future curated lists.
+  </p>
+
+  {% if slug %}
+    <p style="font-size:.86rem;margin-bottom:1rem;">
+      You can view your tool page here:
+      <a href="{{ url_for('tool_detail', slug=slug) }}" style="color:#60a5fa;">open tool page ↗</a>
+    </p>
+  {% endif %}
+
+  <a href="{{ url_for('annuaire_list') }}"
+     style="padding:.6rem 1.3rem;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;font-size:.86rem;display:inline-flex;align-items:center;gap:.35rem;">
+    Back to directory
+  </a>
+</section>
+{% endblock %}

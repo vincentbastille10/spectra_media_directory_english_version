@@ -1,0 +1,288 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Spectra AI Directory — AI tools for companies{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Spectra AI Directory — a curated directory of AI tools for professionals and companies, with a focus on practical business use-cases." />
+  <link rel="icon" href="/static/favicon.ico">
+
+  <!-- Basic reset + fonts -->
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card: #111827;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59,130,246,0.15);
+      --accent-strong: #2563eb;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border-subtle: #1f2937;
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-xl: 1.25rem;
+      --shadow-soft: 0 22px 45px rgba(15,23,42,0.65);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+      width: 100%;
+    }
+
+    header.site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 180deg,
+        #22d3ee,
+        #a855f7,
+        #f97316,
+        #22c55e,
+        #22d3ee
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 2px rgba(15,23,42,0.9), 0 16px 35px rgba(15,23,42,0.85);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo::after {
+      content: "";
+      width: 70%;
+      height: 70%;
+      border-radius: inherit;
+      background: radial-gradient(circle at 30% 20%, #0f172a 0, #020617 65%);
+      opacity: .9;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-title {
+      font-weight: 650;
+      letter-spacing: .03em;
+      font-size: 1rem;
+    }
+
+    .brand-subtitle {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    nav.site-nav {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .83rem;
+    }
+
+    .nav-link {
+      padding: .45rem .75rem;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: all .16s ease-out;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      border-color: rgba(148,163,184,0.35);
+      background: rgba(15,23,42,0.75);
+    }
+
+    .nav-link.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 12px 30px rgba(37,99,235,0.55);
+      font-weight: 560;
+    }
+
+    .nav-link.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(37,99,235,0.75);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    footer {
+      border-top: 1px solid rgba(15,23,42,0.95);
+      background: radial-gradient(circle at top, #020617 0, #000 60%);
+      padding: 1.75rem 1.25rem;
+      color: var(--muted);
+      font-size: .8rem;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .footer-inner strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      border-radius: 999px;
+      padding: .18rem .6rem .18rem .18rem;
+      font-size: .72rem;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(55,65,81,0.85);
+      color: var(--muted);
+    }
+
+    .badge-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #22c55e 0, #16a34a 40%, #052e16 100%);
+      box-shadow: 0 0 0 2px rgba(22,163,74,0.55);
+    }
+
+    .flash-container {
+      margin-bottom: 1rem;
+    }
+
+    .flash-message {
+      padding: .6rem .85rem;
+      border-radius: .75rem;
+      font-size: .83rem;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15,23,42,0.95);
+      color: var(--text);
+      margin-bottom: .35rem;
+    }
+
+    .flash-message.error {
+      border-color: rgba(248,113,113,0.7);
+      background: linear-gradient(135deg, rgba(127,29,29,0.96), rgba(15,23,42,0.98));
+      color: #fee2e2;
+    }
+
+    .flash-message.success {
+      border-color: rgba(34,197,94,0.8);
+      background: linear-gradient(135deg, rgba(6,95,70,0.96), rgba(15,23,42,0.98));
+      color: #dcfce7;
+    }
+
+    @media (max-width: 640px) {
+      header.site-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav.site-nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <div class="brand-text">
+          <div class="brand-title">Spectra AI Directory</div>
+          <div class="brand-subtitle">AI tools that actually help you work</div>
+        </div>
+      </div>
+      <nav class="site-nav">
+        <a href="{{ url_for('index') }}" class="nav-link">Overview</a>
+        <a href="{{ url_for('annuaire_list') }}" class="nav-link">All tools</a>
+        <a href="{{ url_for('ajouter') }}" class="nav-link primary">List your AI tool</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="flash-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <span class="badge">
+          <span class="badge-dot"></span>
+          Curated by <strong>Spectra Media AI</strong>
+        </span>
+      </div>
+      <div>
+        Add your AI tool for <strong>20€</strong> and reach companies looking for real, working solutions.
+      </div>
+      <div>
+        Questions? Contact: <strong>contact@spectramedia.ai</strong> (example)
+      </div>
+    </div>
+  </footer>
+
+  {% block body_extra %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+{% extends "base.html" %}
+
+{% block title %}Spectra AI Directory — AI tools for teams & companies{% endblock %}
+
+{% block content %}
+<section style="display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1.2fr);gap:2.25rem;align-items:flex-start;margin-bottom:2.5rem;">
+  <div>
+    <div style="display:inline-flex;align-items:center;gap:.5rem;padding:.25rem .65rem;border-radius:999px;border:1px solid rgba(55,65,81,0.85);background:rgba(15,23,42,0.9);margin-bottom:.9rem;font-size:.75rem;color:#9ca3af;">
+      <span style="width:9px;height:9px;border-radius:999px;background:radial-gradient(circle at 30% 20%,#22c55e 0,#16a34a 45%,#052e16 100%);box-shadow:0 0 0 3px rgba(22,163,74,0.55);"></span>
+      <span>Built for real businesses — not just hype.</span>
+    </div>
+
+    <h1 style="font-size:2.35rem;line-height:1.05;margin-bottom:.9rem;">
+      The AI tools directory<br />
+      <span style="background:linear-gradient(135deg,#38bdf8,#a855f7,#f97316);-webkit-background-clip:text;color:transparent;">
+        focused on companies
+      </span>
+    </h1>
+
+    <p style="color:#9ca3af;font-size:.96rem;line-height:1.7;margin-bottom:1.4rem;max-width:34rem;">
+      Spectra AI Directory is a curated list of AI tools that help teams <strong>save time, qualify leads and automate repetitive work</strong>.
+      Each tool is designed to be understandable for non‑technical teams.
+    </p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1.75rem;">
+      <a href="{{ url_for('annuaire_list') }}" style="padding:.68rem 1.3rem;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;font-size:.9rem;font-weight:560;box-shadow:0 16px 34px rgba(37,99,235,0.72);">
+        Browse all AI tools
+      </a>
+      <a href="{{ url_for('ajouter') }}" style="padding:.66rem 1.2rem;border-radius:999px;border:1px solid rgba(148,163,184,0.6);font-size:.88rem;color:#e5e7eb;background:rgba(15,23,42,0.9);">
+        List my AI tool for 20€
+      </a>
+    </div>
+
+    <p style="font-size:.78rem;color:#6b7280;max-width:30rem;">
+      Ideal for founders, consultants and teams who want to <strong>ship results quickly</strong> without spending weeks comparing similar tools.
+    </p>
+  </div>
+
+  <div style="background:radial-gradient(circle at top,#1f2937 0,#020617 70%);border-radius:1.5rem;border:1px solid rgba(55,65,81,0.95);padding:1.25rem 1.35rem 1.3rem;box-shadow:0 22px 45px rgba(15,23,42,0.85);position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:auto -40px 20px auto;width:180px;height:180px;background:radial-gradient(circle,#a855f7 0,#020617 65%);opacity:0.22;filter:blur(14px);"></div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem;">
+      <div style="font-size:.8rem;color:#9ca3af;">Today on Spectra AI Directory</div>
+      <span style="font-size:.7rem;color:#6b7280;">Alphabetical list • {{ tools|length }} tools</span>
+    </div>
+
+    <div style="display:grid;gap:.65rem;max-height:280px;overflow:auto;padding-right:.4rem;">
+      {% for tool in tools[:6] %}
+        <article style="border-radius:1rem;border:1px solid rgba(55,65,81,0.95);background:rgba(15,23,42,0.98);padding:.7rem .85rem;display:flex;flex-direction:column;gap:.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;">
+            <a href="{{ url_for('tool_detail', slug=tool['slug']) }}" style="font-size:.9rem;font-weight:550;">{{ tool["name"] }}</a>
+            <span style="font-size:.7rem;border-radius:999px;padding:.15rem .55rem;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.55);color:#bfdbfe;">
+              {{ tool["category"] or "General" }}
+            </span>
+          </div>
+          <p style="font-size:.78rem;color:#9ca3af;line-height:1.6;">{{ tool["short_description"] }}</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.15rem;">
+            <a href="{{ tool['website_url'] }}" target="_blank" rel="noopener" style="font-size:.76rem;color:#60a5fa;">Visit website ↗</a>
+            {% if tool["pricing"] %}
+              <span style="font-size:.75rem;color:#e5e7eb;">{{ tool["pricing"] }}</span>
+            {% endif %}
+          </div>
+        </article>
+      {% else %}
+        <p style="font-size:.82rem;color:#9ca3af;">No tools yet — yours can be the first one ✨</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 style="font-size:1.15rem;margin-bottom:.75rem;">Browse by category</h2>
+  <p style="font-size:.86rem;color:#9ca3af;margin-bottom:1.1rem;">
+    Six main categories to quickly find the AI tools that match your business needs.
+  </p>
+  {% include "partials_category_filters.html" %}
+</section>
+
+<section style="margin-top:1.9rem;">
+  <h2 style="font-size:1.05rem;margin-bottom:.55rem;">All tools (alphabetical)</h2>
+  <p style="font-size:.8rem;color:#6b7280;margin-bottom:1rem;">
+    Ordered from A → Z. Use the filters above to focus on one category.
+  </p>
+  {% include "partials_tools_list.html" %}
+</section>
+{% endblock %}

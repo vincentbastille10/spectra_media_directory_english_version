@@ -1,0 +1,59 @@
+
+<div id="tools-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">
+  {% for tool in tools %}
+    <article class="tool-card"
+             data-category="{{ tool['category'] }}"
+             style="border-radius:1.1rem;border:1px solid rgba(31,41,55,0.9);background:rgba(15,23,42,0.98);padding:.9rem 1rem;box-shadow:0 16px 32px rgba(15,23,42,0.8);display:flex;flex-direction:column;gap:.45rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;">
+        <a href="{{ url_for('tool_detail', slug=tool['slug']) }}" style="font-size:.98rem;font-weight:560;">
+          {{ tool["name"] }}
+        </a>
+        <span style="font-size:.72rem;border-radius:999px;padding:.18rem .6rem;background:rgba(30,64,175,0.5);border:1px solid rgba(129,140,248,0.8);color:#e0e7ff;">
+          {{ tool["category"] or "General" }}
+        </span>
+      </div>
+      <p style="font-size:.8rem;color:#9ca3af;line-height:1.6;">
+        {{ tool["short_description"] }}
+      </p>
+      {% if tool["target_audience"] %}
+        <p style="font-size:.76rem;color:#6b7280;">
+          <strong>Best for</strong> {{ tool["target_audience"] }}
+        </p>
+      {% endif %}
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.2rem;">
+        <a href="{{ tool['website_url'] }}" target="_blank" rel="noopener"
+           style="font-size:.78rem;color:#60a5fa;">
+          Visit website ↗
+        </a>
+        {% if tool["pricing"] %}
+          <span style="font-size:.76rem;color:#e5e7eb;">{{ tool["pricing"] }}</span>
+        {% endif %}
+      </div>
+    </article>
+  {% else %}
+    <p style="font-size:.85rem;color:#9ca3af;">No tools available yet.</p>
+  {% endfor %}
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const chips = document.querySelectorAll(".category-chip");
+  const cards = document.querySelectorAll(".tool-card");
+
+  function applyFilter(category) {
+    cards.forEach(card => {
+      const cardCat = card.getAttribute("data-category") || "";
+      const show = (category === "all") || (cardCat === category);
+      card.style.display = show ? "" : "none";
+    });
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      chips.forEach(c => c.classList.remove("is-active"));
+      chip.classList.add("is-active");
+      applyFilter(chip.dataset.category);
+    });
+  });
+});
+</script>

@@ -1,0 +1,115 @@
+
+{% extends "base.html" %}
+
+{% block title %}List your AI tool — Spectra AI Directory{% endblock %}
+
+{% block content %}
+<section style="max-width:640px;">
+  <h1 style="font-size:1.4rem;margin-bottom:.4rem;">List your AI tool</h1>
+  <p style="font-size:.9rem;color:#9ca3af;margin-bottom:1.1rem;">
+    Fill this short form to submit your AI product to the Spectra AI Directory.
+    The goal is to help <strong>companies</strong> understand quickly what your tool does and who it is for.
+  </p>
+
+  <form method="post" style="display:grid;gap:.9rem;">
+    <div>
+      <label for="name" style="display:block;font-size:.82rem;margin-bottom:.25rem;">Name of the AI tool *</label>
+      <input type="text" id="name" name="name"
+             value="{{ form.get('name','') }}"
+             required
+             style="width:100%;padding:.55rem .6rem;border-radius:.7rem;border:1px solid rgba(55,65,81,0.9);background:rgba(15,23,42,0.98);color:#e5e7eb;font-size:.86rem;">
+    </div>
+
+    <div>
+      <label for="website_url" style="display:block;font-size:.82rem;margin-bottom:.25rem;">Website / main URL *</label>
+      <input type="url" id="website_url" name="website_url"
+             value="{{ form.get('website_url','') }}"
+             required
+             placeholder="https://your-ai-tool.com"
+             style="width:100%;padding:.55rem .6rem;border-radius:.7rem;border:1px solid rgba(55,65,81,0.9);background:rgba(15,23,42,0.98);color:#e5e7eb;font-size:.86rem;">
+    </div>
+
+    <div>
+      <label for="short_description" style="display:block;font-size:.82rem;margin-bottom:.25rem;">
+        Short sentence that explains your AI tool (one line) *
+      </label>
+      <input id="short_description" name="short_description"
+             value="{{ form.get('short_description','') }}"
+             required
+             maxlength="160"
+             style="width:100%;padding:.55rem .6rem;border-radius:.7rem;border:1px solid rgba(55,65,81,0.9);background:rgba(15,23,42,0.98);color:#e5e7eb;font-size:.86rem;">
+    </div>
+
+    <div>
+      <label for="long_description" style="display:block;font-size:.82rem;margin-bottom:.25rem;">
+        Longer description (what problem you solve, how companies use it)
+      </label>
+      <textarea id="long_description" name="long_description" rows="5"
+                style="width:100%;padding:.6rem .65rem;border-radius:.9rem;border:1px solid rgba(55,65,81,0.9);background:rgba(15,23,42,0.98);color:#e5e7eb;font-size:.85rem;">{{ form.get('long_description','') }}</textarea>
+    </div>
+
+    <div>
+      <label for="category" style="display:block;font-size:.82rem;margin-bottom:.25rem;">Main category *</label>
+      <select id="category" name="category"
+              style="width:100%;padding:.52rem .6rem;border-radius:.7rem;border:1px solid rgba(55,65,81,0.9);background:rgba(15,23,42,0.98);color:#e5e7eb;font-size:.86rem;">
+        <option value="">Choose a category…</option>
+        {% for cat in categories %}
+          <option value="{{ cat }}" {% if form.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div style="display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));">
+      <div>
+        <label for="target_audience" style="display:block;font-size:.82rem;margin-bottom:.25rem;">
+          Who is it mainly for? (target customers)
+        </label>
+        <input id="target_audience" name="target_audience"
+               value="{{ form.get('target_audience','') }}"
+               placeholder="Example: independent lawyers, SMB marketing teams…"
+               style="width:100%;padding:.52rem .6rem;border-radius:.7rem;border:1px solid rgba(55,65,81,0.9);background:rgba(15,23,42,0.98);color:#e5e7eb;font-size:.86rem;">
+      </div>
+      <div>
+        <label for="pricing" style="display:block;font-size:.82rem;margin-bottom:.25rem;">
+          Pricing model (short text)
+        </label>
+        <input id="pricing" name="pricing"
+               value="{{ form.get('pricing','') }}"
+               placeholder="$29 / month, free tier, etc."
+               style="width:100%;padding:.52rem .6rem;border-radius:.7rem;border:1px solid rgba(55,65,81,0.9);background:rgba(15,23,42,0.98);color:#e5e7eb;font-size:.86rem;">
+      </div>
+    </div>
+
+    <div>
+      <label for="tags" style="display:block;font-size:.82rem;margin-bottom:.25rem;">
+        Tags / keywords (comma separated)
+      </label>
+      <input id="tags" name="tags"
+             value="{{ form.get('tags','') }}"
+             placeholder="lead generation, CRM, sales automation…"
+             style="width:100%;padding:.52rem .6rem;border-radius:.7rem;border:1px solid rgba(55,65,81,0.9);background:rgba(15,23,42,0.98);color:#e5e7eb;font-size:.86rem;">
+    </div>
+
+    <div style="margin-top:.4rem;font-size:.78rem;color:#6b7280;">
+      By submitting this form you agree that your tool can be displayed on the Spectra AI Directory website.
+    </div>
+
+    <div style="margin-top:.5rem;">
+      <button type="submit"
+              style="padding:.65rem 1.4rem;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#2563eb);border:none;color:white;font-size:.9rem;font-weight:560;cursor:pointer;box-shadow:0 16px 34px rgba(37,99,235,0.85);">
+        Submit my AI tool
+      </button>
+    </div>
+
+    {% if stripe_enabled %}
+      <p style="font-size:.78rem;color:#9ca3af;margin-top:.2rem;">
+        After submitting, you will be redirected to a secure Stripe page to pay the <strong>20€ listing fee</strong>.
+      </p>
+    {% else %}
+      <p style="font-size:.78rem;color:#9ca3af;margin-top:.2rem;">
+        Stripe is not configured yet on this environment — in production you will be redirected to a secure payment page.
+      </p>
+    {% endif %}
+  </form>
+</section>
+{% endblock %}

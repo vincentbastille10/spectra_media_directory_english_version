@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block title %}AI tools directory — Spectra AI Directory{% endblock %}
+
+{% block content %}
+<section style="margin-bottom:1.9rem;">
+  <h1 style="font-size:1.5rem;margin-bottom:.3rem;">AI tools directory</h1>
+  <p style="font-size:.9rem;color:#9ca3af;max-width:36rem;margin-bottom:1.3rem;">
+    Explore the full list of AI tools submitted to Spectra AI Directory. Click on a category to filter the tools.
+  </p>
+
+  {% include "partials_category_filters.html" %}
+</section>
+
+<section>
+  <h2 style="font-size:1.02rem;margin-bottom:.6rem;">All tools (A → Z)</h2>
+  <p style="font-size:.8rem;color:#6b7280;margin-bottom:.9rem;">
+    {{ tools|length }} tools listed. New tools are regularly added.
+  </p>
+  {% include "partials_tools_list.html" %}
+</section>
+{% endblock %}

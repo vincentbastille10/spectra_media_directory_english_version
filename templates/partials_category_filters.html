@@ -1,0 +1,13 @@
+
+<div class="category-filters" style="display:flex;flex-wrap:wrap;gap:.6rem;">
+  <button class="category-chip is-active" data-category="all" type="button"
+          style="border-radius:999px;border:1px solid rgba(55,65,81,0.9);padding:.45rem .9rem;font-size:.8rem;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;box-shadow:0 12px 28px rgba(37,99,235,0.7);">
+    All tools
+  </button>
+  {% for cat in categories %}
+    <button class="category-chip" data-category="{{ cat }}" type="button"
+            style="border-radius:999px;border:1px solid rgba(55,65,81,0.9);padding:.45rem .9rem;font-size:.8rem;background:rgba(15,23,42,0.96);color:#e5e7eb;">
+      {{ cat }}
+    </button>
+  {% endfor %}
+</div>
