@@ -1,55 +1,85 @@
-
 {% extends "base.html" %}
 
-{% block title %}{{ tool["name"] }} — AI tool details | Spectra AI Directory{% endblock %}
+{% block head_extra %}
+<!-- JSON-LD: SoftwareApplication for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ tool.name|e }}",
+  "applicationCategory": "AI Tool",
+  "operatingSystem": "Web",
+  "url": "{{ tool.website_url|e }}",
+  "description": "{{ tool.short_description|e }}{% if tool.long_description %} {{ tool.long_description|e }}{% endif %}",
+  "keywords": "{{ tool.tags|e }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Spectra Media AI",
+    "url": "https://spectramedia.ai"
+  }
+}
+</script>
+{% endblock %}
+
 
 {% block content %}
-<article style="border-radius:1.25rem;border:1px solid rgba(31,41,55,0.95);background:rgba(15,23,42,0.98);padding:1.3rem 1.4rem;box-shadow:0 22px 45px rgba(15,23,42,0.9);margin-bottom:1.6rem;">
-  <header style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.9rem;">
-    <div>
-      <h1 style="font-size:1.4rem;margin-bottom:.25rem;">{{ tool["name"] }}</h1>
-      <p style="font-size:.83rem;color:#9ca3af;">{{ tool["short_description"] }}</p>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.45rem;">
-      <span style="font-size:.74rem;border-radius:999px;padding:.22rem .7rem;background:rgba(30,64,175,0.5);border:1px solid rgba(129,140,248,0.85);color:#e0e7ff;">
-        {{ tool["category"] or "General" }}
-      </span>
-      {% if tool["pricing"] %}
-        <span style="font-size:.78rem;color:#e5e7eb;">{{ tool["pricing"] }}</span>
-      {% endif %}
-      <a href="{{ tool['website_url'] }}" target="_blank" rel="noopener"
-         style="margin-top:.15rem;padding:.45rem .85rem;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;font-size:.8rem;">
-        Visit website ↗
-      </a>
-    </div>
-  </header>
 
-  {% if tool["long_description"] %}
-    <section style="margin-bottom:1.1rem;">
-      <h2 style="font-size:.98rem;margin-bottom:.35rem;">What this AI tool does</h2>
-      <p style="font-size:.86rem;color:#e5e7eb;line-height:1.7;white-space:pre-line;">
-        {{ tool["long_description"] }}
-      </p>
-    </section>
+<div style="
+  background: var(--card);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255,255,255,0.06);
+">
+
+  <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: .75rem;">
+    {{ tool.name }}
+    {% if tool.is_featured %}
+      <span style="
+        color: gold;
+        font-size: 1.3rem;
+        margin-left: .4rem;
+      ">★</span>
+    {% endif %}
+  </h1>
+
+  <p style="color: var(--muted); font-size: 1rem; margin-bottom: 1rem;">
+    {{ tool.short_description }}
+  </p>
+
+  {% if tool.long_description %}
+  <p style="margin-bottom: 1.5rem; line-height: 1.55;">
+    {{ tool.long_description }}
+  </p>
   {% endif %}
 
-  {% if tool["target_audience"] or tool["tags"] %}
-    <section style="display:flex;flex-wrap:wrap;gap:1.5rem;font-size:.8rem;color:#9ca3af;">
-      {% if tool["target_audience"] %}
-        <div>
-          <h3 style="font-size:.8rem;margin-bottom:.2rem;color:#e5e7eb;">Best suited for</h3>
-          <p>{{ tool["target_audience"] }}</p>
-        </div>
-      {% endif %}
-      {% if tool["tags"] %}
-        <div>
-          <h3 style="font-size:.8rem;margin-bottom:.2rem;color:#e5e7eb;">Tags</h3>
-          <p>{{ tool["tags"] }}</p>
-        </div>
-      {% endif %}
-    </section>
-  {% endif %}
-</article>
+  <div style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: .35rem;">
+    <div><strong>Category:</strong> {{ tool.category }}</div>
+    {% if tool.target_audience %}
+      <div><strong>Target audience:</strong> {{ tool.target_audience }}</div>
+    {% endif %}
+    {% if tool.tags %}
+      <div><strong>Tags:</strong> {{ tool.tags }}</div>
+    {% endif %}
+    {% if tool.pricing %}
+      <div><strong>Pricing:</strong> {{ tool.pricing }}</div>
+    {% endif %}
+  </div>
 
-<a href="{{ url_for('annuaire_list') }}" style="font-size:.82rem;color:#60a5fa;">← Back to all tools</a>
+  <a href="{{ tool.website_url }}" target="_blank" rel="noopener"
+     style="
+        display: inline-block;
+        padding: .75rem 1.25rem;
+        border-radius: 999px;
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+        text-align: center;
+        transition: .18s;
+     ">
+    Visit Website →
+  </a>
+
+</div>
+
 {% endblock %}
