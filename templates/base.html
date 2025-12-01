@@ -24,8 +24,64 @@
     <meta name="twitter:title" content="Spectra AI Directory — Business AI Tools" />
     <meta name="twitter:description" content="The B2B AI tools directory for companies and pros." />
 
-    <link rel="icon" href="/static/favicon.ico" />
+    <!-- Favicons (racine) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <link rel="canonical" href="https://spectra-media-directory-english-version.onrender.com/" />
+
+    <!-- JSON-LD: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Spectra AI Directory",
+      "url": "https://spectra-media-directory-english-version.onrender.com/",
+      "description": "Spectra AI Directory is a curated directory of AI tools for businesses. Discover business-ready AI tools for sales, support, automation, analytics and content — or list your AI product for €20.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Spectra Media AI",
+        "url": "https://spectramedia.online/"
+      },
+      "inLanguage": "en"
+    }
+    </script>
+
+    <!-- JSON-LD: Product (listing offer 20€ / 99€) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "AI tool listing on Spectra AI Directory",
+      "description": "Paid listing of an AI tool in the Spectra AI Directory, a curated directory of business-ready AI tools.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Spectra Media AI"
+      },
+      "url": "https://spectra-media-directory-english-version.onrender.com/add",
+      "offers": [
+        {
+          "@type": "Offer",
+          "priceCurrency": "EUR",
+          "price": "20",
+          "description": "Standard listing published after Stripe payment.",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "priceCurrency": "EUR",
+          "price": "99",
+          "description": "Premium listing published instantly with star and priority.",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    }
+    </script>
 
     <!-- Basic reset + fonts + layout -->
     <style>
