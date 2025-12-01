@@ -1,7 +1,36 @@
-
 {% extends "base.html" %}
 
-{% block title %}AI tools directory — Spectra AI Directory{% endblock %}
+{% block head_extra %}
+  <!-- SEO: JSON-LD ItemList for the full directory -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Spectra AI Directory — Full AI tools list",
+    "description": "Curated directory of AI tools for businesses: sales, marketing, customer support, automation, analytics, content and developer tools.",
+    "url": "{{ url_for('annuaire_list', _external=True) }}",
+    "itemListElement": [
+      {% for tool in tools %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "url": "{{ url_for('tool_detail', slug=tool['slug'], _external=True) }}",
+        "name": {{ tool['name']|tojson }},
+        "description": {{ tool['short_description']|tojson }},
+        "keywords": {{ (tool['tags'] or '')|tojson }},
+        "item": {
+          "@type": "SoftwareApplication",
+          "name": {{ tool['name']|tojson }},
+          "applicationCategory": "AI tool",
+          "operatingSystem": "Web",
+          "url": "{{ tool['website_url'] }}"
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
+{% endblock %}
 
 {% block content %}
 <section style="margin-bottom:1.9rem;">
