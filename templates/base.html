@@ -1,12 +1,20 @@
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>{% block title %}Spectra AI Directory — AI tools for companies{% endblock %}</title>
+  <title>{% block title %}Spectra AI Directory — Curated AI tools for businesses & teams{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Spectra AI Directory — a curated directory of AI tools for professionals and companies, with a focus on practical business use-cases." />
+  <meta name="description"
+        content="Spectra AI Directory is a curated directory of AI tools built for companies and professionals, focused on sales, productivity, customer support, analytics, content and developer tools." />
   <link rel="icon" href="/static/favicon.ico">
+
+  <!-- Open Graph / social -->
+  <meta property="og:title" content="Spectra AI Directory — Curated AI tools for businesses & teams" />
+  <meta property="og:description"
+        content="Discover AI tools that actually help companies sell more, support customers faster and automate operations. List your AI tool for €20." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://spectra-media-directory-english-version.onrender.com/" />
+  <meta property="og:image" content="/static/og-image.png" />
 
   <!-- Basic reset + fonts -->
   <style>
@@ -20,7 +28,7 @@
       --text: #e5e7eb;
       --muted: #9ca3af;
       --border-subtle: #1f2937;
-      --danger: #f97373;
+      --danger: #ef4444;
       --success: #4ade80;
       --radius-xl: 1.25rem;
       --shadow-soft: 0 22px 45px rgba(15,23,42,0.65);
@@ -147,6 +155,26 @@
       box-shadow: 0 18px 40px rgba(37,99,235,0.75);
     }
 
+    .lang-switch {
+      margin-left: .4rem;
+      font-size: .9rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+    }
+
+    .lang-switch a {
+      padding: .18rem .45rem;
+      border-radius: .6rem;
+      border: 1px solid transparent;
+    }
+
+    .lang-switch a:hover {
+      border-color: rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+    }
+
     main {
       flex: 1;
     }
@@ -248,6 +276,13 @@
         <a href="{{ url_for('index') }}" class="nav-link">Overview</a>
         <a href="{{ url_for('annuaire_list') }}" class="nav-link">All tools</a>
         <a href="{{ url_for('ajouter') }}" class="nav-link primary">List your AI tool</a>
+
+        <!-- Switch FR / EN -->
+        <div class="lang-switch">
+          <a href="https://spectraaidirectory.onrender.com" title="Version française">🇫🇷</a>
+          <span>·</span>
+          <a href="https://spectra-media-directory-english-version.onrender.com" title="English version">🇬🇧</a>
+        </div>
       </nav>
     </header>
 
@@ -275,7 +310,7 @@
         </span>
       </div>
       <div>
-        Add your AI tool for <strong>20€</strong> and reach companies looking for real, working solutions.
+        Add your AI tool for <strong>€20</strong> and reach companies looking for real, working solutions.
       </div>
       <div>
         Questions? Contact: <strong>contact@spectramedia.ai</strong> (example)
