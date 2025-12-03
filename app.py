@@ -883,6 +883,7 @@ def start_checkout(slug: str):
         ],
         success_url=success_url,
         cancel_url=STRIPE_CANCEL_URL,
+        allow_promotion_codes=True,
         metadata={
             "tool_slug": slug,
             "tool_name": tool["name"],
