@@ -742,6 +742,9 @@ def annuaire_list():
         stripe_enabled=bool(STRIPE_SECRET_KEY and STRIPE_PRICE_ID),
     )
 
+@app.route("/top-ai-tools")
+def top_ai_tools():
+    return render_template("top_ai_tools.html")
 
 @app.route("/tool/<slug>")
 def tool_detail(slug: str):
