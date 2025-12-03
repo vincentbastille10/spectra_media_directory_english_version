@@ -5,34 +5,91 @@
 {% block content %}
 <main style="max-width:960px;margin:0 auto;padding:2.5rem 1.25rem 3.5rem 1.25rem;">
   
-  <!-- Intro -->
+    <!-- Intro -->
   <header style="margin-bottom:2.5rem;">
     <p style="font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:#6b7280;margin-bottom:.5rem;">
       Spectra AI Directory · Curated for real businesses
     </p>
+
     <h1 style="font-size:2.4rem;line-height:1.1;margin-bottom:1rem;color:#111827;">
       Top AI Tools for Businesses in 2025
     </h1>
-    <p style="font-size:1.05rem;line-height:1.6;color:#4b5563;max-width:44rem;">
-      This guide is a hand-picked selection of AI tools that actually help entrepreneurs, freelancers 
-      and small businesses save time, get more clients, and automate repetitive work.  
-      It is curated by <strong>Spectra Media AI</strong>, the team behind 
+
+    <p style="font-size:1.05rem;line-height:1.6;color:#4b5563;max-width:44rem;margin-bottom:1rem;">
+      This page has two goals: <strong>help businesses find battle-tested AI tools</strong>, and
+      <strong>give serious AI founders a place to showcase their product</strong>.
+      The list is curated by <strong>Spectra Media AI</strong>, the team behind
       <strong>Betty Bot</strong> and the <strong>Spectra AI Directory</strong>.
     </p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;">
+      <div style="font-size:.9rem;padding:.45rem .8rem;border-radius:999px;background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;">
+        🎁 <strong>Today only:</strong> listing is <strong>FREE</strong> with code <strong>FREE24H</strong>.
+      </div>
+      <a href="{{ url_for('ajouter') }}"
+         style="display:inline-flex;align-items:center;gap:.4rem;font-size:.95rem;padding:.45rem .95rem;border-radius:999px;
+                border:1px solid #4f46e5;background:#4f46e5;color:white;text-decoration:none;">
+        Add your AI tool now
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
   </header>
 
-  <!-- Table of contents -->
-  <section style="margin-bottom:2.5rem;padding:1.5rem;border-radius:1rem;background:#f3f4ff;">
-    <h2 style="font-size:1.15rem;margin-bottom:.75rem;color:#111827;">Categories in this guide</h2>
-    <ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.5rem;font-size:.95rem;color:#374151;margin:0;padding:0;list-style:none;">
-      <li><a href="#customer-support" style="text-decoration:none;">💬 Customer support & chatbots</a></li>
-      <li><a href="#sales-marketing" style="text-decoration:none;">📈 Sales & marketing</a></li>
-      <li><a href="#productivity" style="text-decoration:none;">⚙️ Productivity & automation</a></li>
-      <li><a href="#content-creation" style="text-decoration:none;">✍️ Content, design & creation</a></li>
-      <li><a href="#audio-video" style="text-decoration:none;">🎧 Audio & video</a></li>
-      <li><a href="#data-analytics" style="text-decoration:none;">📊 Data & analytics</a></li>
+
+  <!-- Why list your AI tool here? -->
+  <section style="margin-bottom:2.5rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:.9rem;color:#111827;">
+      Why list your AI tool on Spectra AI Directory?
+    </h2>
+    <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.75rem;">
+      <li style="display:flex;gap:.75rem;align-items:flex-start;">
+        <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
+        <div>
+          <strong>Seen by people who actually want to use AI at work</strong><br>
+          <span style="font-size:.95rem;color:#4b5563;">
+            The directory is focused on entrepreneurs, small businesses and teams looking for tools that save time and generate revenue.
+          </span>
+        </div>
+      </li>
+      <li style="display:flex;gap:.75rem;align-items:flex-start;">
+        <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
+        <div>
+          <strong>Human curation, not a spam graveyard</strong><br>
+          <span style="font-size:.95rem;color:#4b5563;">
+            We only keep tools that solve a real problem. Your product isn’t drowned in 1,000 half-dead projects.
+          </span>
+        </div>
+      </li>
+      <li style="display:flex;gap:.75rem;align-items:flex-start;">
+        <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
+        <div>
+          <strong>SEO + credibility boost</strong><br>
+          <span style="font-size:.95rem;color:#4b5563;">
+            Each listing gets its own page with a clean backlink and positioning as a “business-ready” AI tool.
+          </span>
+        </div>
+      </li>
+      <li style="display:flex;gap:.75rem;align-items:flex-start;">
+        <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
+        <div>
+          <strong>Featured spots for the best tools</strong><br>
+          <span style="font-size:.95rem;color:#4b5563;">
+            The most useful products are pushed to the top of the directory and highlighted in future collections.
+          </span>
+        </div>
+      </li>
+      <li style="display:flex;gap:.75rem;align-items:flex-start;">
+        <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
+        <div>
+          <strong>24h free listing with FREE24H</strong><br>
+          <span style="font-size:.95rem;color:#4b5563;">
+            Today, your listing is free when you use the code <strong>FREE24H</strong>. No risk, just extra visibility.
+          </span>
+        </div>
+      </li>
     </ul>
   </section>
+
 
   <!-- Helper card: link to your directory -->
   <section style="margin-bottom:2.5rem;">
