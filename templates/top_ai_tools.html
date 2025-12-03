@@ -4,107 +4,180 @@
 
 {% block content %}
 <main style="max-width:960px;margin:0 auto;padding:2.5rem 1.25rem 3.5rem 1.25rem;">
-  
-    <!-- Intro -->
-  <header style="margin-bottom:2.5rem;">
-    <p style="font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:#6b7280;margin-bottom:.5rem;">
-      Spectra AI Directory · Curated for real businesses
-    </p>
 
-    <h1 style="font-size:2.4rem;line-height:1.1;margin-bottom:1rem;color:#111827;">
-      Top AI Tools for Businesses in 2025
-    </h1>
-
-    <p style="font-size:1.05rem;line-height:1.6;color:#4b5563;max-width:44rem;margin-bottom:1rem;">
-      This page has two goals: <strong>help businesses find battle-tested AI tools</strong>, and
-      <strong>give serious AI founders a place to showcase their product</strong>.
-      The list is curated by <strong>Spectra Media AI</strong>, the team behind
-      <strong>Betty Bot</strong> and the <strong>Spectra AI Directory</strong>.
-    </p>
-
-    <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;">
-      <div style="font-size:.9rem;padding:.45rem .8rem;border-radius:999px;background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;">
-        🎁 <strong>Today only:</strong> listing is <strong>FREE</strong> with code <strong>FREE24H</strong>.
+  <!-- Hero: founders + businesses -->
+  <section style="margin-bottom:3rem;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1.05fr);gap:1.75rem;align-items:flex-start;">
+    <div>
+      <p style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#6b7280;margin-bottom:.55rem;">
+        Spectra AI Directory · For AI founders & business teams
+      </p>
+      <h1 style="font-size:2.45rem;line-height:1.08;margin-bottom:.8rem;color:#111827;">
+        Top AI tools for businesses in 2025<br>
+        + a free place to list yours
+      </h1>
+      <p style="font-size:1.02rem;line-height:1.7;color:#4b5563;max-width:34rem;margin-bottom:1.15rem;">
+        This page is for two people at once: the <strong>business owner</strong> who wants AI tools that
+        actually work, and the <strong>AI founder</strong> who built something serious and wants more
+        qualified users — without shouting into the void.
+      </p>
+      <ul style="font-size:.95rem;color:#4b5563;margin:0 0 1.1rem 1.1rem;padding:0;">
+        <li style="margin-bottom:.3rem;">Hand-picked AI tools that already help real teams work faster.</li>
+        <li style="margin-bottom:.3rem;">A curated directory where <strong>your</strong> AI product can live and be found.</li>
+        <li>Today, listing is <strong>free</strong> with code <strong>FREE24H</strong>.</li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;">
+        <a href="{{ url_for('ajouter') }}"
+           style="display:inline-flex;align-items:center;gap:.4rem;font-size:.95rem;padding:.55rem 1.25rem;border-radius:999px;
+                  border:1px solid #4f46e5;background:#4f46e5;color:white;text-decoration:none;font-weight:500;">
+          Add your AI tool (FREE today)
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="#customer-support"
+           style="font-size:.9rem;color:#4b5563;text-decoration:underline;text-decoration-style:dotted;">
+          Just want to see the tools first ?
+        </a>
       </div>
-      <a href="{{ url_for('ajouter') }}"
-         style="display:inline-flex;align-items:center;gap:.4rem;font-size:.95rem;padding:.45rem .95rem;border-radius:999px;
-                border:1px solid #4f46e5;background:#4f46e5;color:white;text-decoration:none;">
-        Add your AI tool now
-        <span aria-hidden="true">→</span>
-      </a>
+      <p style="font-size:.8rem;color:#9ca3af;margin-top:.6rem;">
+        No waitlist · No “maybe later” emails · Just a clean listing in a focused B2B AI directory.
+      </p>
     </div>
-  </header>
 
+    <!-- Conversion card -->
+    <aside style="border-radius:1.1rem;border:1px solid #e5e7eb;padding:1.25rem 1.35rem;background:#f9fafb;">
+      <div style="font-size:.8rem;text-transform:uppercase;letter-spacing:.16em;color:#b91c1c;margin-bottom:.45rem;">
+        🎁 24h founders offer
+      </div>
+      <h2 style="font-size:1.15rem;margin:0 0 .55rem 0;color:#111827;">
+        List your AI tool for free today
+      </h2>
+      <p style="font-size:.9rem;color:#4b5563;margin:0 0 .75rem 0;">
+        Normally a listing costs <strong>20€</strong>. For the next 24 hours, you can add your product
+        to the Spectra AI Directory for <strong>0€</strong> using the code <strong>FREE24H</strong>.
+      </p>
+      <ol style="font-size:.9rem;color:#4b5563;margin:0 0 .85rem 1.1rem;padding:0;">
+        <li>Click “Add your AI tool”.</li>
+        <li>Fill in your product details.</li>
+        <li>Use code <strong>FREE24H</strong> at checkout.</li>
+      </ol>
+      <a href="{{ url_for('ajouter') }}"
+         style="display:flex;justify-content:center;align-items:center;gap:.35rem;width:100%;margin-bottom:.65rem;
+                padding:.5rem 1rem;border-radius:999px;background:#4f46e5;border:1px solid #4f46e5;color:#ffffff;
+                font-size:.93rem;font-weight:500;text-decoration:none;">
+        List my AI tool now
+        <span aria-hidden="true">🚀</span>
+      </a>
+      <p style="font-size:.8rem;color:#9ca3af;margin:0;">
+        Your listing stays after the promo. No hidden subscription, no upsell trap.
+      </p>
+    </aside>
+  </section>
 
-  <!-- Why list your AI tool here? -->
+  <!-- Why list here -->
   <section style="margin-bottom:2.5rem;">
-    <h2 style="font-size:1.4rem;margin-bottom:.9rem;color:#111827;">
-      Why list your AI tool on Spectra AI Directory?
+    <h2 style="font-size:1.45rem;margin-bottom:.9rem;color:#111827;">
+      Why founders list their AI tools on Spectra AI Directory
     </h2>
     <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.75rem;">
       <li style="display:flex;gap:.75rem;align-items:flex-start;">
         <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
         <div>
-          <strong>Seen by people who actually want to use AI at work</strong><br>
-          <span style="font-size:.95rem;color:#4b5563;">
-            The directory is focused on entrepreneurs, small businesses and teams looking for tools that save time and generate revenue.
+          <strong>Focused on real business use-cases</strong><br>
+          <span style="font-size:.94rem;color:#4b5563;">
+            The directory is built for entrepreneurs, small businesses and teams that want tools they can plug
+            into their workday — not experimental demos.
           </span>
         </div>
       </li>
       <li style="display:flex;gap:.75rem;align-items:flex-start;">
         <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
         <div>
-          <strong>Human curation, not a spam graveyard</strong><br>
-          <span style="font-size:.95rem;color:#4b5563;">
-            We only keep tools that solve a real problem. Your product isn’t drowned in 1,000 half-dead projects.
+          <strong>Your product isn’t lost in a sea of clones</strong><br>
+          <span style="font-size:.94rem;color:#4b5563;">
+            We prefer fewer, better tools. If your product is serious, it stands out instead of being buried
+            under 1,000 low-effort launches.
           </span>
         </div>
       </li>
       <li style="display:flex;gap:.75rem;align-items:flex-start;">
         <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
         <div>
-          <strong>SEO + credibility boost</strong><br>
-          <span style="font-size:.95rem;color:#4b5563;">
-            Each listing gets its own page with a clean backlink and positioning as a “business-ready” AI tool.
+          <strong>SEO + trust boost</strong><br>
+          <span style="font-size:.94rem;color:#4b5563;">
+            Each listing gets a clean page, a backlink and clear positioning as a “business-ready” AI tool,
+            which you can also reuse in your own marketing.
           </span>
         </div>
       </li>
       <li style="display:flex;gap:.75rem;align-items:flex-start;">
         <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
         <div>
-          <strong>Featured spots for the best tools</strong><br>
-          <span style="font-size:.95rem;color:#4b5563;">
-            The most useful products are pushed to the top of the directory and highlighted in future collections.
+          <strong>Extra visibility from curated collections</strong><br>
+          <span style="font-size:.94rem;color:#4b5563;">
+            The tools we like most get highlighted in guides like this one and in future “top picks” lists.
           </span>
         </div>
       </li>
       <li style="display:flex;gap:.75rem;align-items:flex-start;">
         <span style="font-size:1.1rem;margin-top:.1rem;">✅</span>
         <div>
-          <strong>24h free listing with FREE24H</strong><br>
-          <span style="font-size:.95rem;color:#4b5563;">
-            Today, your listing is free when you use the code <strong>FREE24H</strong>. No risk, just extra visibility.
+          <strong>Zero-risk test with FREE24H</strong><br>
+          <span style="font-size:.94rem;color:#4b5563;">
+            Today, you can list your product for free with code <strong>FREE24H</strong>. If it doesn’t bring
+            any value, you still got a backlink and a clean listing page.
           </span>
         </div>
       </li>
     </ul>
   </section>
 
+  <!-- Mini “how it works” -->
+  <section style="margin-bottom:2.75rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:.8rem;color:#111827;">How it works in under 2 minutes</h2>
+    <div style="display:grid;gap:.9rem;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));">
+      <div style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1rem 1.1rem;background:#ffffff;">
+        <div style="font-size:.78rem;font-weight:600;color:#6366f1;margin-bottom:.25rem;">Step 1</div>
+        <h3 style="font-size:1rem;margin:0 0 .3rem 0;color:#111827;">Tell us what your tool does</h3>
+        <p style="font-size:.9rem;color:#4b5563;margin:0;">
+          Fill in your product name, niche, main benefits and link. Keep it simple and concrete.
+        </p>
+      </div>
+      <div style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1rem 1.1rem;background:#ffffff;">
+        <div style="font-size:.78rem;font-weight:600;color:#6366f1;margin-bottom:.25rem;">Step 2</div>
+        <h3 style="font-size:1rem;margin:0 0 .3rem 0;color:#111827;">Use FREE24H at checkout</h3>
+        <p style="font-size:.9rem;color:#4b5563;margin:0;">
+          Normally 20€. Today, tap <strong>FREE24H</strong> to publish your listing for 0€.
+        </p>
+      </div>
+      <div style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1rem 1.1rem;background:#ffffff;">
+        <div style="font-size:.78rem;font-weight:600;color:#6366f1;margin-bottom:.25rem;">Step 3</div>
+        <h3 style="font-size:1rem;margin:0 0 .3rem 0;color:#111827;">Your page goes live</h3>
+        <p style="font-size:.9rem;color:#4b5563;margin:0;">
+          Your tool appears in the directory and can be featured in future “top tools” collections like this one.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <!-- Helper card: link to your directory -->
+  <!-- Link back to full directory -->
   <section style="margin-bottom:2.5rem;">
     <div style="border-radius:1rem;border:1px solid #e5e7eb;padding:1.25rem 1.5rem;background:#f9fafb;">
-      <h2 style="font-size:1.1rem;margin-bottom:.35rem;color:#111827;">Looking for even more tools?</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:.35rem;color:#111827;">Want to browse everything first?</h2>
       <p style="margin:0 0 .65rem 0;font-size:.95rem;color:#4b5563;">
-        This article is a starting point. You can explore many more tools — sorted by use case and business need —
+        This article is a curated sample. You can explore many more tools — sorted by use case and business need —
         in the full <strong>Spectra AI Directory</strong>.
       </p>
-      <a href="{{ url_for('annuaire_list') }}" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.95rem;padding:.4rem .9rem;border-radius:999px;border:1px solid #4f46e5;background:#4f46e5;color:white;text-decoration:none;">
-        Open Spectra AI Directory
+      <a href="{{ url_for('annuaire_list') }}"
+         style="display:inline-flex;align-items:center;gap:.4rem;font-size:.95rem;padding:.4rem .9rem;border-radius:999px;
+                border:1px solid #4f46e5;background:#4f46e5;color:white;text-decoration:none;">
+        Open the full directory
         <span aria-hidden="true">↗</span>
       </a>
     </div>
   </section>
+
+  <!-- ========================= -->
+  <!-- FULL CATEGORY SECTIONS   -->
+  <!-- ========================= -->
 
   <!-- Category 1: Customer support & chatbots -->
   <section id="customer-support" style="margin-bottom:2.75rem;">
@@ -150,13 +223,13 @@
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Tidio AI</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Tidio combines live chat with an AI chatbot that can answer FAQs, recover abandoned carts and 
         recommend products, especially for e-commerce.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> online shops that want more sales with minimal setup.
       </p>
     </article>
@@ -180,46 +253,46 @@
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Claude</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Claude is an AI assistant known for its long-context reasoning and careful tone. It’s useful for 
         drafting thoughtful newsletters, proposals, and detailed documents.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> agencies and consultants who work with complex or sensitive content.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Jasper</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Jasper is focused on marketing copy: blogs, ads, product descriptions, and campaign ideas with 
         brand-voice controls and team workflows.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> marketing teams producing a lot of written content.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Copy.ai</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Copy.ai offers ready-made workflows to generate outbound email sequences, LinkedIn messages and social posts,
         helping sales teams contact more prospects with personalized messages.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> SDR and sales teams automating outreach.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Apollo.io</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Apollo combines a large B2B contact database with AI-assisted sequences, so you can find decision-makers,
         send them targeted emails and track performance in one place.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> B2B companies building outbound lead generation.
       </p>
     </article>
@@ -244,232 +317,234 @@
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Make (Integromat)</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Make offers visual scenarios with branching logic and AI modules. It’s powerful for building 
         more complex automations like multi-step lead scoring or report generation.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> teams comfortable with building detailed workflows.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Notion AI</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Notion AI lives directly inside your documents and databases: it can summarise meeting notes, 
         extract action items, and help you rewrite text in a clearer tone.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> teams already using Notion as their workspace.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Airtable AI</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Airtable adds AI formulas and automations on top of spreadsheet-like databases, turning tables of 
         data into intelligent workflows.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> operations and project teams managing structured data.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Perplexity AI</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Perplexity is an AI-powered research engine that finds information, cites sources and summarises topics 
         so you can make decisions faster.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> founders and analysts who need quick, trustworthy overviews.
       </p>
     </article>
   </section>
 
   <!-- Category 4: Content & design -->
-  <section id="content-creation" style="margin-bottom:2.75rem;">
+  <section id="content-creation" style="margin-bottom:2.75rem%;">
     <h2 style="font-size:1.6rem;margin-bottom:.75rem;color:#111827;">✍️ Content, design & creation</h2>
     <p style="font-size:.98rem;color:#4b5563;margin-bottom:1.25rem;max-width:44rem;">
       These tools help you design visuals, create marketing assets and turn ideas into content without 
       needing a full creative team.
     </p>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Canva with AI</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Canva’s AI features generate images, suggest layouts and help you resize content for every platform 
         in a few clicks.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> small teams designing social posts, flyers and presentations.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Midjourney</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Midjourney generates high-quality illustrative images from text prompts, ideal for branding, ads, 
         moodboards and concept art.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> creatives and brands needing unique visuals quickly.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Runway</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Runway is an AI video creation and editing platform: remove backgrounds, generate clips from prompts 
         and create visual effects without heavy software.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> social-media video, creative studios and campaigns.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Notion Templates + AI</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Combining Notion templates with AI lets you generate blog outlines, content calendars and project plans 
         directly inside your workspace.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> solopreneurs who want everything in one place.
       </p>
     </article>
   </section>
 
   <!-- Category 5: Audio & video -->
-  <section id="audio-video" style="margin-bottom:2.75rem;">
+  <section id="audio-video" style="margin-bottom:2.75rem%;">
     <h2 style="font-size:1.6rem;margin-bottom:.75rem;color:#111827;">🎧 Audio & video</h2>
     <p style="font-size:.98rem;color:#4b5563;margin-bottom:1.25rem;max-width:44rem;">
       Record once, reuse everywhere: these tools turn your calls, podcasts and videos into reusable content.
     </p>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Descript</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Descript lets you edit audio and video by editing text. You can remove filler words, cut sections and 
         generate new voice lines using AI overdub.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> podcasters, educators and marketers who publish regularly.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Loom AI features</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Loom’s AI features generate titles, summaries and chapters from your screen recordings, making it easier 
         for clients and teammates to watch only the parts that matter.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> async teams and service providers explaining work to clients.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">ElevenLabs</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         ElevenLabs generates natural-sounding voices in many languages, ideal for voice-overs, tutorials and 
         content localisation without hiring multiple voice actors.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> video creators and course makers needing high-quality narration.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Otter.ai</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Otter transcribes meetings in real time and highlights key moments, making it easier to revisit decisions 
         and extract tasks from calls.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> teams running many online meetings.
       </p>
     </article>
   </section>
 
   <!-- Category 6: Data & analytics -->
-  <section id="data-analytics" style="margin-bottom:3rem;">
+  <section id="data-analytics" style="margin-bottom:3rem%;">
     <h2 style="font-size:1.6rem;margin-bottom:.75rem;color:#111827;">📊 Data & analytics</h2>
     <p style="font-size:.98rem;color:#4b5563;margin-bottom:1.25rem;max-width:44rem;">
       Make sense of your numbers: from dashboards to AI-assisted analysis, these tools help you see what is 
       really happening in your business.
     </p>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Power BI with Copilot</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Power BI now includes Copilot, which lets you ask questions in natural language to build visuals and 
         get explanations about your data.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> SMEs already using Microsoft 365 who want self-service BI.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Looker Studio + AI connectors</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Looker Studio connects to your marketing, sales and website data and, combined with AI connectors, 
         can highlight anomalies and trends automatically.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> marketers and analysts pulling data from many sources.
       </p>
     </article>
 
-    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white;">
+    <article style="border-radius:.9rem;border:1px solid #e5e7eb;padding:1.25rem 1.4rem;margin-bottom:1rem;background:white%;">
       <h3 style="font-size:1.1rem;margin-bottom:.2rem;color:#111827;">Obviously.ai</h3>
-      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0;">
+      <p style="font-size:.93rem;color:#4b5563;margin:.1rem 0 .35rem 0%;">
         Obviously.ai lets you upload your data and run predictive models without coding, to understand churn, 
         conversion or which customers are most likely to buy.
       </p>
-      <p style="font-size:.9rem;color:#6b7280;margin:0;">
+      <p style="font-size:.9rem;color:#6b7280;margin:0%;">
         <strong>Best for:</strong> small teams curious about machine learning but lacking data scientists.
       </p>
     </article>
   </section>
 
-  <!-- CTA: Add your tool -->
-  <section style="border-radius:1.1rem;border:1px solid #4f46e5;padding:1.75rem 1.6rem;background:linear-gradient(135deg,#4f46e5,#6366f1,#a855f7);color:white;">
-    <h2 style="font-size:1.5rem;margin-bottom:.45rem;">Add your AI tool to the Spectra AI Directory</h2>
-    <p style="font-size:.98rem;max-width:38rem;margin:0 0 1rem 0;">
-      Build once, be visible in many places. List your AI product in the Spectra AI Directory and reach 
-      entrepreneurs and small businesses actively looking for tools that solve real problems.
+  <!-- Final CTA -->
+  <section style="border-radius:1.1rem;border:1px solid #4f46e5;padding:1.75rem 1.6rem;
+                   background:linear-gradient(135deg,#4f46e5,#6366f1,#a855f7);color:white;">
+    <h2 style="font-size:1.5rem;margin-bottom:.5rem;">Add your AI tool while it’s still free</h2>
+    <p style="font-size:.98rem;max-width:38rem;margin:0 0 1rem 0%;">
+      If you’ve built an AI product that genuinely helps businesses, give it a clean, permanent place to live.
+      List it in the Spectra AI Directory and let people who care about real work discover it.
     </p>
-    <ul style="font-size:.92rem;margin:0 0 1rem 1.1rem;padding:0;">
-      <li>Curated directory focused on real-world business use cases</li>
-      <li>Permanent listing for a simple, transparent fee</li>
-      <li>Extra visibility from articles like this one and future guides</li>
+    <ul style="font-size:.9rem;margin:0 0 1rem 1.1rem;padding:0%;">
+      <li>Curated B2B AI directory — not a random launch feed.</li>
+      <li>Permanent listing, simple one-time fee (free today with <strong>FREE24H</strong>).</li>
+      <li>Extra visibility from guides, collections and future roundups.</li>
     </ul>
-    <a href="{{ url_for('ajouter') }}" style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.2rem;border-radius:999px;background:white;color:#111827;font-size:.95rem;font-weight:500;text-decoration:none;">
-      Add your AI tool for 20€
+    <a href="{{ url_for('ajouter') }}"
+       style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.2rem;border-radius:999px;
+              background:white;color:#111827;font-size:.95rem;font-weight:500;text-decoration:none;">
+      Add your AI tool (FREE with FREE24H)
       <span aria-hidden="true">→</span>
     </a>
   </section>
 
 </main>
-{% endblock %}  {# <-- ceci ferme block content #}
+{% endblock %}
 
 {% block head_extra %}
   <meta name="description"
-        content="Hand-picked list of the best AI tools for businesses in 2025: chatbots, sales, automation, content, audio, video and analytics. Curated by Spectra Media AI, creators of Betty Bot and the Spectra AI Directory." />
+        content="Hand-picked list of the best AI tools for businesses in 2025 and a curated directory where AI founders can list their product. Free listing today with code FREE24H." />
 
   <link rel="canonical" href="https://spectra-media-directory-english-version.onrender.com/top-ai-tools" />
 
   <meta property="og:title" content="Top AI Tools for Businesses in 2025 | Spectra AI Directory" />
   <meta property="og:description"
-        content="Discover a curated list of AI tools that actually help entrepreneurs and small businesses work faster, sell more and automate boring tasks." />
+        content="Discover business-ready AI tools and list your own AI product in a curated directory. Free listing today with code FREE24H." />
   <meta property="og:url" content="https://spectra-media-directory-english-version.onrender.com/top-ai-tools" />
 
   <meta name="twitter:title" content="Top AI Tools for Businesses in 2025" />
   <meta name="twitter:description"
-        content="Curated list of AI tools for sales, support, automation, content, audio, video and analytics — by Spectra Media AI." />
-
+        content="Curated AI tools for sales, support, automation and content — plus a free listing offer for AI founders (FREE24H)." />
 {% endblock %}
