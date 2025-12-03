@@ -14,6 +14,7 @@ from flask import (
     abort,
     flash,
     Response,
+    send_from_directory,
 )
 
 import stripe
@@ -691,6 +692,10 @@ seed_initial_tools()
 # ============================================================
 # ROUTES
 # ============================================================
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory("static", "sitemap.xml")
 
 @app.route("/")
 def index():
