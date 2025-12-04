@@ -1,4 +1,3 @@
-
 <div id="tools-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">
   {% for tool in tools %}
     <article class="tool-card"
@@ -12,14 +11,66 @@
           {{ tool["category"] or "General" }}
         </span>
       </div>
+
       <p style="font-size:.8rem;color:#9ca3af;line-height:1.6;">
         {{ tool["short_description"] }}
       </p>
+
       {% if tool["target_audience"] %}
         <p style="font-size:.76rem;color:#6b7280;">
           <strong>Best for</strong> {{ tool["target_audience"] }}
         </p>
       {% endif %}
+
+      {# ============================================================
+         Revenue Map badges
+         tool.revenue_tags doit contenir un string ou une liste
+         avec : "sales", "automation", "marketing",
+                "support", "analytics", "finance"
+         Exemple en DB : "sales,automation"
+      ============================================================ #}
+      {% set rev = tool.get("revenue_tags") %}
+      {% if rev %}
+        <div class="compat-badges">
+          {% if "sales" in rev %}
+            <span class="compat-badge compat-badge--sales"
+                  title="Helps you generate direct revenue (leads, closing, upsell)">
+              Sales
+            </span>
+          {% endif %}
+          {% if "automation" in rev %}
+            <span class="compat-badge compat-badge--automation"
+                  title="Automates work and reduces operational costs">
+              Automation
+            </span>
+          {% endif %}
+          {% if "marketing" in rev %}
+            <span class="compat-badge compat-badge--marketing"
+                  title="Improves reach, traffic and conversions">
+              Marketing
+            </span>
+          {% endif %}
+          {% if "support" in rev %}
+            <span class="compat-badge compat-badge--support"
+                  title="Improves support, retention and reduces churn">
+              Support
+            </span>
+          {% endif %}
+          {% if "analytics" in rev %}
+            <span class="compat-badge compat-badge--analytics"
+                  title="Better decisions through analytics and insights">
+              Analytics
+            </span>
+          {% endif %}
+          {% if "finance" in rev %}
+            <span class="compat-badge compat-badge--finance"
+                  title="Optimises cash-flow, invoicing and financial control">
+              Finance
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.2rem;">
         <a href="{{ tool['website_url'] }}" target="_blank" rel="noopener"
            style="font-size:.78rem;color:#60a5fa;">
