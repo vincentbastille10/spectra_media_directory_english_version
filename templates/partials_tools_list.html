@@ -1,5 +1,7 @@
 <div id="tools-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">
   {% for tool in tools %}
+    {% set cat = (tool['category'] or '')|lower %}
+
     <article class="tool-card"
              data-category="{{ tool['category'] }}"
              style="border-radius:1.1rem;border:1px solid rgba(31,41,55,0.9);background:rgba(15,23,42,0.98);padding:.9rem 1rem;box-shadow:0 16px 32px rgba(15,23,42,0.8);display:flex;flex-direction:column;gap:.45rem;">
@@ -23,51 +25,48 @@
       {% endif %}
 
       {# ============================================================
-         Revenue Map badges
-         tool.revenue_tags : string ex. "sales,automation"
-         (pense juste à ajouter cette colonne dans ta table + SELECT)
+         Revenue Map badges déduits de la category
+         🔵 Sales  🟢 Automation  🟣 Marketing
+         🔴 Support  🟠 Analytics  🟡 Finance
       ============================================================ #}
-      {% set rev = tool.revenue_tags or "" %}
-      {% if rev %}
-        <div class="compat-badges">
-          {% if "sales" in rev %}
-            <span class="compat-badge compat-badge--sales"
-                  title="Helps you generate direct revenue (leads, closing, upsell)">
-              Sales
-            </span>
-          {% endif %}
-          {% if "automation" in rev %}
-            <span class="compat-badge compat-badge--automation"
-                  title="Automates work and reduces operational costs">
-              Automation
-            </span>
-          {% endif %}
-          {% if "marketing" in rev %}
-            <span class="compat-badge compat-badge--marketing"
-                  title="Improves reach, traffic and conversions">
-              Marketing
-            </span>
-          {% endif %}
-          {% if "support" in rev %}
-            <span class="compat-badge compat-badge--support"
-                  title="Improves support, retention and reduces churn">
-              Support
-            </span>
-          {% endif %}
-          {% if "analytics" in rev %}
-            <span class="compat-badge compat-badge--analytics"
-                  title="Better decisions through analytics and insights">
-              Analytics
-            </span>
-          {% endif %}
-          {% if "finance" in rev %}
-            <span class="compat-badge compat-badge--finance"
-                  title="Optimises cash-flow, invoicing and financial control">
-              Finance
-            </span>
-          {% endif %}
-        </div>
-      {% endif %}
+      <div class="compat-badges">
+        {% if 'sales' in cat or 'crm' in cat or 'lead' in cat %}
+          <span class="compat-badge compat-badge--sales"
+                title="Helps you generate direct revenue (leads, closing, upsell)">
+            Sales
+          </span>
+        {% endif %}
+        {% if 'automation' in cat or 'workflow' in cat or 'agent' in cat %}
+          <span class="compat-badge compat-badge--automation"
+                title="Automates work and reduces operational costs">
+            Automation
+          </span>
+        {% endif %}
+        {% if 'marketing' in cat or 'content' in cat or 'seo' in cat %}
+          <span class="compat-badge compat-badge--marketing"
+                title="Improves reach, traffic and conversions">
+            Marketing
+          </span>
+        {% endif %}
+        {% if 'support' in cat or 'chatbot' in cat or 'helpdesk' in cat %}
+          <span class="compat-badge compat-badge--support"
+                title="Improves support, retention and reduces churn">
+            Support
+          </span>
+        {% endif %}
+        {% if 'analytics' in cat or 'bi' in cat or 'dashboard' in cat %}
+          <span class="compat-badge compat-badge--analytics"
+                title="Better decisions through analytics and insights">
+            Analytics
+          </span>
+        {% endif %}
+        {% if 'finance' in cat or 'billing' in cat or 'invoice' in cat or 'accounting' in cat %}
+          <span class="compat-badge compat-badge--finance"
+                title="Optimises cash-flow, invoicing and financial control">
+            Finance
+          </span>
+        {% endif %}
+      </div>
 
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.2rem;">
         <a href="{{ tool['website_url'] }}" target="_blank" rel="noopener"
