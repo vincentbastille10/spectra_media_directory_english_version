@@ -48,9 +48,56 @@
   </p>
 
   {% if tool.long_description %}
-  <p style="margin-bottom: 1.5rem; line-height: 1.55;">
+  <p style="margin-bottom: 1.3rem; line-height: 1.55;">
     {{ tool.long_description }}
   </p>
+  {% endif %}
+
+  {# ============================================================
+     Revenue Map badges
+     tool.revenue_tags peut être une string ex: "sales,automation"
+     ou une liste; on teste par inclusion.
+  ============================================================ #}
+  {% set rev = tool.revenue_tags or '' %}
+  {% if rev %}
+    <div class="compat-badges" style="margin-bottom: 1.25rem;">
+      {% if "sales" in rev %}
+        <span class="compat-badge compat-badge--sales"
+              title="Helps you generate direct revenue (leads, closing, upsell)">
+          Sales
+        </span>
+      {% endif %}
+      {% if "automation" in rev %}
+        <span class="compat-badge compat-badge--automation"
+              title="Automates work and reduces operational costs">
+          Automation
+        </span>
+      {% endif %}
+      {% if "marketing" in rev %}
+        <span class="compat-badge compat-badge--marketing"
+              title="Improves reach, traffic and conversions">
+          Marketing
+        </span>
+      {% endif %}
+      {% if "support" in rev %}
+        <span class="compat-badge compat-badge--support"
+              title="Improves support, retention and reduces churn">
+          Support
+        </span>
+      {% endif %}
+      {% if "analytics" in rev %}
+        <span class="compat-badge compat-badge--analytics"
+              title="Better decisions through analytics and insights">
+          Analytics
+        </span>
+      {% endif %}
+      {% if "finance" in rev %}
+        <span class="compat-badge compat-badge--finance"
+              title="Optimises cash-flow, invoicing and financial control">
+          Finance
+        </span>
+      {% endif %}
+    </div>
   {% endif %}
 
   <div style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: .35rem;">
