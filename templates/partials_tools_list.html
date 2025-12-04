@@ -24,12 +24,10 @@
 
       {# ============================================================
          Revenue Map badges
-         tool.revenue_tags doit contenir un string ou une liste
-         avec : "sales", "automation", "marketing",
-                "support", "analytics", "finance"
-         Exemple en DB : "sales,automation"
+         tool.revenue_tags : string ex. "sales,automation"
+         (pense juste à ajouter cette colonne dans ta table + SELECT)
       ============================================================ #}
-      {% set rev = tool.get("revenue_tags") %}
+      {% set rev = tool.revenue_tags or "" %}
       {% if rev %}
         <div class="compat-badges">
           {% if "sales" in rev %}
