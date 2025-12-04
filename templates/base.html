@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>{% block title %}Spectra AI Directory — AI Tools for Businesses | List Your AI Product{% endblock %}</title>
+    <title>{% block title %}Spectra AI Directory — AI Tools for Businesses | List Your AI Product{% endblock %}</title>
 
     <meta name="description"
           content="Spectra AI Directory is a curated directory of AI tools for businesses. Discover business-ready AI tools for sales, support, automation, analytics and content — or list your AI product for €20." />
@@ -344,6 +344,73 @@
         filter: brightness(1.04);
       }
 
+      /* ======================================================
+         REVENUE MAP — COMPATIBILITY BADGES
+         Chaque couleur correspond à une façon de générer de la valeur
+         🔵 Sales  🟢 Automation  🟣 Marketing
+         🔴 Support  🟠 Analytics  🟡 Finance
+      ======================================================= */
+
+      .compat-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-top: 0.35rem;
+      }
+
+      .compat-badge {
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* 🔵 SALES — génère directement du CA (leads, closing, upsell) */
+      .compat-badge--sales {
+        background: #dbeafe;
+        border-color: #93c5fd;
+        color: #1d4ed8;
+      }
+
+      /* 🟢 AUTOMATION — fait gagner beaucoup de temps / réduit les coûts */
+      .compat-badge--automation {
+        background: #dcfce7;
+        border-color: #86efac;
+        color: #166534;
+      }
+
+      /* 🟣 MARKETING — apporte visibilité, trafic et conversions */
+      .compat-badge--marketing {
+        background: #f3e8ff;
+        border-color: #e9d5ff;
+        color: #6b21a8;
+      }
+
+      /* 🔴 SUPPORT — protège la rétention et limite les pertes / churn */
+      .compat-badge--support {
+        background: #fee2e2;
+        border-color: #fecaca;
+        color: #b91c1c;
+      }
+
+      /* 🟠 ANALYTICS — aide à prendre de meilleures décisions business */
+      .compat-badge--analytics {
+        background: #ffedd5;
+        border-color: #fed7aa;
+        color: #9a3412;
+      }
+
+      /* 🟡 FINANCE — optimise cash-flow, facturation et erreurs */
+      .compat-badge--finance {
+        background: #fef9c3;
+        border-color: #fef08a;
+        color: #854d0e;
+      }
+
       @media (max-width: 640px) {
         header.site-header {
           flex-direction: column;
@@ -356,15 +423,16 @@
         }
       }
     </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3XZ475QM24"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-3XZ475QM24');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XZ475QM24"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-3XZ475QM24');
+    </script>
 
     {% block head_extra %}{% endblock %}
 </head>
@@ -444,6 +512,13 @@
             height="54"
           />
         </a>
+      </div>
+
+      <!-- Petite explication du code couleur -->
+      <div style="margin-top: 0.6rem; font-size: 0.75rem; color: var(--muted);">
+        Revenue color code:
+        🔵 <strong>Sales</strong> · 🟢 <strong>Automation</strong> · 🟣 <strong>Marketing</strong> ·
+        🔴 <strong>Support</strong> · 🟠 <strong>Analytics</strong> · 🟡 <strong>Finance</strong>
       </div>
 
       <div style="margin-top: 0.4rem;">
