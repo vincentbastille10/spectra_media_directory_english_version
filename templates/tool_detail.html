@@ -53,12 +53,8 @@
   </p>
   {% endif %}
 
-  {# ============================================================
-     Revenue Map badges
-     tool.revenue_tags peut être une string ex: "sales,automation"
-     ou une liste; on teste par inclusion.
-  ============================================================ #}
-  {% set rev = tool.revenue_tags or '' %}
+  {# Revenue Map badges #}
+  {% set rev = tool.revenue_tags or "" %}
   {% if rev %}
     <div class="compat-badges" style="margin-bottom: 1.25rem;">
       {% if "sales" in rev %}
