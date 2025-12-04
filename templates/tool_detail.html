@@ -32,6 +32,8 @@
   border: 1px solid rgba(255,255,255,0.06);
 ">
 
+  {% set cat = (tool.category or '')|lower %}
+
   <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: .75rem;">
     {{ tool.name }}
     {% if tool.is_featured %}
@@ -53,48 +55,45 @@
   </p>
   {% endif %}
 
-  {# Revenue Map badges #}
-  {% set rev = tool.revenue_tags or "" %}
-  {% if rev %}
-    <div class="compat-badges" style="margin-bottom: 1.25rem;">
-      {% if "sales" in rev %}
-        <span class="compat-badge compat-badge--sales"
-              title="Helps you generate direct revenue (leads, closing, upsell)">
-          Sales
-        </span>
-      {% endif %}
-      {% if "automation" in rev %}
-        <span class="compat-badge compat-badge--automation"
-              title="Automates work and reduces operational costs">
-          Automation
-        </span>
-      {% endif %}
-      {% if "marketing" in rev %}
-        <span class="compat-badge compat-badge--marketing"
-              title="Improves reach, traffic and conversions">
-          Marketing
-        </span>
-      {% endif %}
-      {% if "support" in rev %}
-        <span class="compat-badge compat-badge--support"
-              title="Improves support, retention and reduces churn">
-          Support
-        </span>
-      {% endif %}
-      {% if "analytics" in rev %}
-        <span class="compat-badge compat-badge--analytics"
-              title="Better decisions through analytics and insights">
-          Analytics
-        </span>
-      {% endif %}
-      {% if "finance" in rev %}
-        <span class="compat-badge compat-badge--finance"
-              title="Optimises cash-flow, invoicing and financial control">
-          Finance
-        </span>
-      {% endif %}
-    </div>
-  {% endif %}
+  {# Revenue Map badges basés sur la category #}
+  <div class="compat-badges" style="margin-bottom: 1.25rem;">
+    {% if 'sales' in cat or 'crm' in cat or 'lead' in cat %}
+      <span class="compat-badge compat-badge--sales"
+            title="Helps you generate direct revenue (leads, closing, upsell)">
+        Sales
+      </span>
+    {% endif %}
+    {% if 'automation' in cat or 'workflow' in cat or 'agent' in cat %}
+      <span class="compat-badge compat-badge--automation"
+            title="Automates work and reduces operational costs">
+        Automation
+      </span>
+    {% endif %}
+    {% if 'marketing' in cat or 'content' in cat or 'seo' in cat %}
+      <span class="compat-badge compat-badge--marketing"
+            title="Improves reach, traffic and conversions">
+        Marketing
+      </span>
+    {% endif %}
+    {% if 'support' in cat or 'chatbot' in cat or 'helpdesk' in cat %}
+      <span class="compat-badge compat-badge--support"
+            title="Improves support, retention and reduces churn">
+        Support
+      </span>
+    {% endif %}
+    {% if 'analytics' in cat or 'bi' in cat or 'dashboard' in cat %}
+      <span class="compat-badge compat-badge--analytics"
+            title="Better decisions through analytics and insights">
+        Analytics
+      </span>
+    {% endif %}
+    {% if 'finance' in cat or 'billing' in cat or 'invoice' in cat or 'accounting' in cat %}
+      <span class="compat-badge compat-badge--finance"
+            title="Optimises cash-flow, invoicing and financial control">
+        Finance
+      </span>
+    {% endif %}
+  </div>
 
   <div style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: .35rem;">
     <div><strong>Category:</strong> {{ tool.category }}</div>
