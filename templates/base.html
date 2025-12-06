@@ -411,6 +411,41 @@
         color: #854d0e;
       }
 
+      /* ====== AJOUT POUR LA RECHERCHE ====== */
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .search-container {
+        position: relative;
+      }
+
+      .search-input {
+        padding: 0.38rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(148,163,184,0.45);
+        background: rgba(15,23,42,0.9);
+        color: var(--text);
+        font-size: 0.82rem;
+        min-width: 190px;
+        transition: border-color 0.16s ease-out, box-shadow 0.16s ease-out, background 0.16s ease-out, transform 0.1s ease-out;
+      }
+
+      .search-input::placeholder {
+        color: #6b7280;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px rgba(59,130,246,0.55), 0 12px 25px rgba(15,23,42,0.85);
+        background: #020617;
+        transform: translateY(-1px);
+      }
+
       @media (max-width: 640px) {
         header.site-header {
           flex-direction: column;
@@ -420,6 +455,18 @@
           width: 100%;
           justify-content: flex-start;
           flex-wrap: wrap;
+        }
+        .header-right {
+          width: 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+        .search-container {
+          width: 100%;
+        }
+        .search-input {
+          width: 100%;
         }
       }
     </style>
@@ -459,17 +506,32 @@
           <div class="brand-subtitle">AI tools that actually help you work</div>
         </div>
       </div>
-      <nav class="site-nav">
-        <a href="{{ url_for('index') }}" class="nav-link">Overview</a>
-        <a href="{{ url_for('annuaire_list') }}" class="nav-link">All tools</a>
-        <a href="{{ url_for('ajouter') }}" class="nav-link primary">List your AI tool</a>
 
-        <div class="lang-switch">
-          <a href="https://spectraaidirectory.onrender.com" title="Version française">🇫🇷</a>
-          <span>·</span>
-          <a href="https://spectra-media-directory-english-version.onrender.com" title="English version">🇬🇧</a>
+      <!-- NAV + SEARCH ALIGNÉS À DROITE -->
+      <div class="header-right">
+        <nav class="site-nav">
+          <a href="{{ url_for('index') }}" class="nav-link">Overview</a>
+          <a href="{{ url_for('annuaire_list') }}" class="nav-link">All tools</a>
+          <a href="{{ url_for('ajouter') }}" class="nav-link primary">List your AI tool</a>
+
+          <div class="lang-switch">
+            <a href="https://spectraaidirectory.onrender.com" title="Version française">🇫🇷</a>
+            <span>·</span>
+            <a href="https://spectra-media-directory-english-version.onrender.com" title="English version">🇬🇧</a>
+          </div>
+        </nav>
+
+        <!-- BARRE DE RECHERCHE AJOUTÉE -->
+        <div class="search-container">
+          <input
+            id="ai-search-input"
+            class="search-input"
+            type="text"
+            placeholder="Search AI tools on this page…"
+            aria-label="Search AI tools on this page"
+          />
         </div>
-      </nav>
+      </div>
     </header>
 
     <main>
@@ -526,6 +588,32 @@
       </div>
     </div>
   </footer>
+
+  <!-- SCRIPT DE RECHERCHE (filtre les cartes d'IA sur la page) -->
+  <script>
+    (function() {
+      const input = document.getElementById('ai-search-input');
+      if (!input) return;
+
+      input.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+
+        // Essaie de trouver les cartes IA. Adapte si besoin:
+        const cards = document.querySelectorAll('.tool-card, [data-ai-card]');
+
+        if (!cards.length) return;
+
+        cards.forEach(card => {
+          const text = card.innerText.toLowerCase();
+          if (!query) {
+            card.style.display = '';
+          } else {
+            card.style.display = text.includes(query) ? '' : 'none';
+          }
+        });
+      });
+    })();
+  </script>
 
   {% block body_extra %}{% endblock %}
 </body>
