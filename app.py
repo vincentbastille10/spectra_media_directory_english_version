@@ -126,7 +126,7 @@ INITIAL_TOOLS = [
         "category": "Sales & Marketing",
         "tags": "lead qualification, chatbot, assistant, SMB",
         "target_audience": "small businesses, agencies, local services, professionals",
-        "pricing": "From €29.90 / month",
+        "pricing": "From €299 / month",
         "is_featured": 1,
     },
     {
